@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+   </script>
+
+   <style type="text/tailwindcss">
+      @import "tailwindcss"; 
+ 
+     @theme {
+       --font-sans: ui-sans-serif, system-ui, sans-serif;
+       --color-brand: #ff4500;
+     }
+ 
+     @layer base {
+       p {@apply mb-2 leading-relaxed text-gray-700;}       
+       input {@apply rounded-sm border-1 border-gray-500 text-pink-800 font-serif}
+       input, label {@apply inline-block flex-1 pl-4}
+       button {@apply rounded-sm border-1 border-gray-500 px-4 py-[0.5] }
+     }
+   </style>
+   <title>TEST DIVERTIDO</title>
+</head>
+
+<body class="container mx-auto w-4/5"> <!-- 80% ancho -->
+   <h1 class="text-pink-800 font-bold text-xl my-4">TEST DIVERTIDO</h1>
+   <p id="p1">1. Ordena estos animales en orden de preferencia:</p>
+   <blockquote class="w-2/3 ml-8">
+      <p class="flex flex-row">
+         <label id="vaca" for="vaca-value">Vaca: </label> 
+         <input id="vaca-value" type="number" min="1" max="5" size="5">
+      </p>
+      <p class="flex flex-row">
+         <label id="tigre" for="tigre-value">Tigre: </label>
+         <input id="tigre-value" type="number"  min="1" max="5" size="5">
+      </p>
+      <p class="flex flex-row">
+         <label id="oveja" for="oveja-value">Oveja: </label>
+         <input id="oveja-value" type="number"  min="1" max="5" size="5">
+      </p>
+      <p class="flex flex-row">
+         <label id="caballo" for="caballo-value">Caballo: </label>
+         <input id="caballo-value" type="number"  min="1" max="5" size="5">
+      </p>
+      <p class="flex flex-row">
+         <label id="mono" for="mono-value">Mono: </label>
+         <input id="mono-value" type="number"  min="1" max="5" size="5">
+      </p>
+   </blockquote>
+   <p id="p2">2. Escribe una palabra que describa lo siguiente:</p>
+   <blockquote class="w-2/3 ml-8">
+      <p class="flex flex-row">
+         <label id="perro" for="perro-value">Perro: </label>
+         <input id="perro-value" type="text">
+      </p>
+      <p class="flex flex-row">
+         <label id="gato" for="gato-value">Gato: </label>
+         <input id="gato-value" type="text">
+      </p>
+      <p class="flex flex-row">
+         <label id="rata" for="rata-value">Rata: </label>
+         <input id="rata-value" type="text">
+      </p>
+      <p class="flex flex-row">
+         <label id="cafe" for="cafe-value">Café: </label>
+         <input id="cafe-value" type="text">
+      </p>
+      <p class="flex flex-row">
+         <label id="mar" for="mar-value">Mar: </label>
+         <input id="mar-value" type="text">
+      </p>
+   </blockquote>
+   <p id="p3">3. Indica alguien importante para tí, que te sugiera este color:</p>
+   <blockquote class="w-2/3 ml-8 ">
+      <p class="flex flex-row">
+         <label id="amarillo" for="amarillo-value">Amarillo: </label>
+         <input id="amarillo-value" type="text">
+      </p>
+      <p class="flex flex-row">
+         <label id="naranja" for="naranja-value">Naranja: </label>
+         <input id="naranja-value" type="text">
+      </p>
+      <p class="flex flex-row">
+         <label id="blanco" for="blanco-value">Blanco: </label>
+         <input id="blanco-value" type="text">
+      </p>
+      <p class="flex flex-row">
+         <label id="rojo" for="rojo-value">Rojo: </label>
+         <input id="rojo-value" type="text">
+      </p>
+      <p class="flex flex-row">
+         <label id="verde" for="verde-value">Verde: </label>
+         <input id="verde-value" type="text">
+      </p>
+   </blockquote>   
+   <p class="mt-4">
+      <button class="bg-pink-800 text-white font-bold" type="button" onclick="calcular()"> 
+         resultados 
+      </button>
+   </p>
+
+
+   <script>
+
+   </script>
+
+
+</body>
+
+</html>
