@@ -17,31 +17,33 @@
 
     @layer base {
       :root {
-        line-height: 1.5;
+        line-height: 1.7;
       }
       p {@apply mb-2 text-gray-700;}       
       input {@apply rounded-sm border-1 border-gray-500 text-pink-800 font-serif}
       input, label {@apply inline-block flex-1 pl-4}
       button {@apply rounded-md shadow-xs border-2 border-pink-800 px-4 py-[0.5] }
+      details {@apply text-[0.9em] mb-4}
+      summary {@apply bg-pink-800 text-white font-bold }    
     }
   </style>
   <title>Recoger variables</title>
 </head>
 
 <body class="container mx-auto w-4/5">
-  <details class="text-sm">
-    <summary class="bg-pink-800 text-white font-bold">ENUNCIADO</summary>
+  <details>
+    <summary>ENUNCIADO</summary>
     <p>Responde los datos del formulario y termina la función <code>Calcular()</code> de manera que al hacer clic en el botón, aparezca el siguiente texto en el párrafo con id <code>totalGastos</code>:</p>
-    <p class="font-serif text-center">
+    <p class="font-mono text-center">
       "<mark>Nombre Apellidos</mark>: Tu gasto fijo total es de <mark>total</mark> euros."
     </p>
     <p>Ejemplo:</p>
-    <p class="font-serif text-center">
+    <p class="font-mono text-center">
       <strong>Pepito Pérez Rojas</strong>: Tu gasto fijo total es de <strong>450</strong> euros."
     </p>
   </details>
-  <details class="text-sm">
-    <summary class="text-pink-800 font-bold">
+  <details>
+    <summary>
       Tipos de Datos en JavaScript
     </summary>
     <div class="flex flex-row">
@@ -72,8 +74,8 @@
       </div>
     </div>
   </details>
-  <details class="text-sm">
-    <summary class="text-pink-800 font-bold">
+  <details>
+    <summary>
       Ordenamiento del código de los programas en JavaScript
     </summary>
       <ul class="[list-style-type:circle] list-outside ml-8 mb-3">
