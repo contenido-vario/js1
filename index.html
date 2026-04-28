@@ -40,7 +40,19 @@
           list-style-type: circle;
           @apply ml-4
         }
-      }
+
+        a {
+          /* Borde inferior slate-500, ancho de 1px y estilo dotted */
+          @apply border-b border-dotted border-slate-500;
+    
+          /* Suavizar la transición del hover */
+          @apply transition-all duration-200 inline-block;
+        }
+
+        a:hover {
+          /* Escalar la letra a 1.1 y fondo slate-200 */
+          @apply scale-[1.1] bg-slate-200;
+        }
     </style>
   <title>Ejercicios JavaScript</title>
 </head>
@@ -48,7 +60,7 @@
 <body class="container mx-auto w-4/5">
   <h1 class="text-pink-800 font-bold text-xl my-2">Ejercicios JavaScript</h1>
   <ul class="[list-style-type:circle] list-outside ml-8 mb-3">
-    <li>Variables en JavaScript. <a target="_blank" href="./conversion-variables/recogervariables.html">recogervariables.html</a></li>
+    <li><a target="_blank" href="./conversion-variables/recogervariables.html">Variables y tipos de Datos en JavaScript. <code>getElementById</code></a></li>
     <li>Repaso <code>getElementById</code>. <a target="_blank" href="./test/index.html">Test divertido</a></li>
     <li>Ejercicios Entrada/Salida de Datos. <a target="_blank" href="ejerciciosio.html">Ejercicios I/O</a></li>
   </ul>
