@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+  
+    <style type="text/tailwindcss">
+      @import "tailwindcss"; 
+  
+      @layer base {
+        p, h1, h2, h3 {
+          @apply mb-2 leading-relaxed text-gray-700
+        }
+        h1, h2, h3 {
+          @apply mt-2 font-bold text-slate-500
+        }
+        details {
+          @apply mb-4 pb-4 border-b-slate-700 border-b-1
+        }
+        summary {
+          @apply bg-slate-700 text-white font-bold
+        }
+        code {
+          @apply text-blue-800
+        }
+        ul {
+          list-style-type: circle;
+          @apply ml-4
+        }
+
+        a {
+            @apply text-indigo-400
+        }
+
+        a:hover {
+            @apply  font-bold bg-slate-200
+        }
+      }
+    </style>
+    <title>Chuletas</title>
+  </head>
+<body class="container w-4/5 mx-auto">
+  <h1 class="font-extrabold text-2xl">Explicaciones de clase</h1>
+    <ul>
+        <li><a href="./clase1/clase1.html" target="_blank">Clase 2026/04/27</a></li>
+    </ul>
+</body>
+</html>
