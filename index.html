@@ -8,20 +8,40 @@
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
   </script>
 
-  <style type="text/tailwindcss">
-     @import "tailwindcss"; 
-
-    @theme {
-      --font-sans: ui-sans-serif, system-ui, sans-serif;
-      --color-brand: #ff4500;
-    }
-
-    @layer base {
-      p, li {@apply mb-1 leading-relaxed text-gray-700}       
-      a {@apply text-blue-600 border-b-1 border-blue-600}
-      a:hover {@apply bg-gray-100}       
-    }
-  </style>
+<style type="text/tailwindcss">
+      @import "tailwindcss"; 
+  
+      @layer base {
+        p, h1, h2, h3 {
+          @apply mb-2 leading-relaxed text-gray-700
+        }
+        h1, h2, h3 {
+          @apply mt-2 font-bold text-slate-500
+        }
+        input {
+          @apply rounded-sm border-1 border-slate-300 text-slate-400 font-mono
+        }
+        input, label {
+          @apply inline-block flex-1 pl-4
+        }
+        button {
+          @apply rounded-md shadow-xs border-2 border-slate-400 px-4 py-[0.5] my-1
+        }
+        details {
+          @apply mb-4 pb-4 border-b-slate-700 border-b-1
+        }
+        summary {
+          @apply bg-slate-700 text-white font-bold
+        }
+        code {
+          @apply text-blue-800
+        }
+        ul {
+          list-style-type: circle;
+          @apply ml-4
+        }
+      }
+    </style>
   <title>Ejercicios JavaScript</title>
 </head>
 
