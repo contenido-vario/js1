@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+  
+    <style type="text/tailwindcss">
+      @import "tailwindcss"; 
+  
+      @layer base {
+        p, h1, h2, h3 {
+          @apply mb-2 leading-relaxed text-gray-700
+        }
+        h1, h2, h3 {
+          @apply mt-2 font-bold text-slate-500
+        }
+        input {
+          @apply rounded-sm border-1 border-slate-300 text-slate-400 font-mono
+        }
+        input, label {
+          @apply inline-block flex-1 pl-4
+        }
+        button {
+          @apply rounded-md shadow-xs border-2 border-slate-400 px-4 py-[0.5] my-1
+        }
+        details {
+          @apply mb-4 pb-4 border-b-slate-700 border-b-1
+        }
+        summary {
+          @apply bg-slate-700 text-white font-bold
+        }
+        code {
+          @apply text-blue-800
+        }
+        ul {
+          list-style-type: circle;
+          @apply ml-4
+        }
+      }
+    </style>
+    <title>Ejercicios</title>
+  </head>
+<body class="container w-4/5 mx-auto">
+  <h1 class="font-extrabold text-2xl">Ejercicios Entrada y Salida de Datos / Aritmética</h1>
+  <p>( Cada ejercicio será una página web diferente. Subir a GitHub )</p>
+  <details><summary>Ejercicio 1</summary>
+    <p>Haz un programa que le pregunte dos números enteros al usuario mediante un formulario. (Para convertir a entero usa la función <code>parseInt</code>). Al presionar el botón <code>Aritmética</code>, el programa imprimirá por pantalla los mensajes siguientes (Crear los párrafos pertinentes con su <code>id</code> ):</p>
+    <ul class="mb-2">
+      <li>La suma de <code>a</code> + <code>b</code> es <code>valor</code></li>
+      <li>La resta de <code>a</code> + <code>b</code> es <code>valor</code></li>
+      <li>La multiplicación de <code>a</code> + <code>b</code> es <code>valor</code></li>
+      <li>La división de <code>a</code> + <code>b</code> es <code>valor</code></li>
+    </ul>
+    <hr>
+    <h2>Formulario</h2>
+    <div class="w-2/3">
+      <p class="flex">
+        <label class="flex-1" for="numeroa">Escribe un número entero</label>
+        <input class="flex-1" type="number" id="numeroa">
+      </p>
+      <p class="flex">
+        <label class="flex-1" for="numerob">Escribe otro número entero</label>
+        <input class="flex-1" type="number" id="numerob">
+      </p>
+      <p><button>Aritmética</button></p>
+    </div>
+  </details>
+  <details><summary>Ejercicio 2</summary>
+    <p>Haz un programa que le pida al usuario que introduzca 3 notas por formulario y que muestre como resultado el promedio de las 3 notas per pantalla. Usa la función <code>parseFloat</code> para convertir a número.</p>
+  </details>
+  <details><summary>Ejercicio 3</summary>
+    <p>Haz un programa que le pida al usuario que introduzca un número entero por formulario y que muestre como resultado el doble y el triple del mismo.</p> 
+  </details>
+  <details><summary>Ejercicio 4</summary>
+    <p>Escribe un programaque calcule los litros de pintura necessarios para pintar una pared rectangular.</p>
+    <p>Un litro de pintura cubre aproximadamente, 12m<sup>2</sup> en una sola mano.</p>
+    <p>Crea una constante llamada <code>COBERTURA</code> para guardar la cobertura de la pintura (12m<sup>2</sup>)</p>
+    <p>Pregunta al usuario mediante un formulario:</p>
+    <ul>
+      <li>El alto y ancho de la pared ( multiplicando sabrás el área de la misma)</li>
+      <li>El número de manos a aplicar</li>
+      <li>Muestra por pantalla los litros de pintura a utilitzar.</li>
+    </ul>
+    <h2>Formulario</h2>
+    <div class="w-2/3">
+      <p class="flex">
+        <label class="flex-1" for="alto">Alto de la pared</label>
+        <input class="flex-1" type="number" id="alto">
+      </p>
+      <p class="flex">
+        <label class="flex-1" for="ancho">Ancho de la pared</label>
+        <input class="flex-1" type="number" id="ancho">
+      </p>
+      <p class="flex">
+        <label class="flex-1" for="manos">Manos de pintura a aplicar</label>
+        <input class="flex-1" type="number" id="manos">
+      </p>
+      <p><button>Calcular Litros de Pintura</button></p>
+    </div>
+  </details>
+</body>
+</html>
