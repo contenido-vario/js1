@@ -12,12 +12,9 @@
       @import "tailwindcss"; 
   
       @layer base {
-        html {
+        body {
           /* Interlineado global de 1.25 (proporcional al tamaño de fuente) */
           line-height: 1.25;
-          /* Opcional: suavizado de fuente para que todo se vea más limpio */
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
         }
         p, h1, h2, h3 {
           @apply mb-2 leading-relaxed text-gray-700
