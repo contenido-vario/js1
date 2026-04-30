@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+  </script>
+
+  <style type="text/tailwindcss">
+    @import "tailwindcss"; 
+
+    @layer base {
+      :root {
+        @apply text-sm;
+        line-height: 1.5;
+      }
+
+      p {
+        @apply mb-1
+      }
+
+      button {
+        @apply rounded-md bg-slate-200 border-1 border-slate-400 px-4 py-1 my-1 text-sm cursor-pointer disabled:opacity-50
+      }
+      details {
+        @apply mb-4 py-2 border-b-slate-700 border-b-1 text-slate-800 
+      }
+      summary {
+        @apply py-1 text-base bg-slate-800 text-white font-bold
+      }
+      blockquote {
+        @apply mx-8 p-2 bg-slate-200
+      }
+
+      ol {
+        @apply list-decimal list-outside ml-6 mb-4
+      }
+
+      ul {
+        @apply list-[circle] list-outside ml-6 mb-4
+      }
+      
+      kbd, code, a {
+        @apply text-blue-800
+      }
+
+      a {
+        @apply border-b-1 
+      }
+
+      input, select {
+        @apply border-1 px-2
+      }
+
+      hr {
+        @apply my-3
+      }
+    }
+  </style>
+
+  <link rel="shortcut icon" href="questions.svg" type="image/svg">
+  <title>Condicionales</title>
+</head>
+
+<body class="container mx-auto w-5/6">
+<h1 class="font-bold text-2xl text-red-700">Ejercicios con condicional</h1>
+<p class="text-center"><a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Statements/if...else" target="_blank" rel="noopener noreferrer">if...else</a> 🔹<a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Operators/Conditional_operator" target="_blank" rel="noopener noreferrer">Operador condicional (ternario)</a> 🔹 <a href="https://lenguajejs.com/javascript/tipos/falsy-truthy/" target="_blank" rel="noopener noreferrer">Falsy y Truthy</a></p>
+<details>
+  <summary>Ejercicio 4.1. Determinar número mayor</summary>
+  <p>Crea un programa que solicite al usuario/a que introduzca dos números enteros y muestre por pantalla el mayor de los dos.</p>
+</details>
+
+<details>
+  <summary>Ejercicio 4.2. Nivel de experiencia</summary>
+  <p>Crea un programa que solicite al usuario/a que introduzca su nombre y el número de años que lleva trabajando en una empresa. Después muestra por pantalla su nivel de experiencia, según la siguiente tabla:</p>
+  <ul>
+    <li>Menos de 2 años: Nivel principiante.</li>
+    <li>Entre 2 y 4 años: Nivel intermedio.</li>
+    <li>Más de 4 y hasta 7 años: Nivel avanzado.</li>
+    <li>Más de 7 y hasta 10 años: Nivel experto.</li>
+    <li>Más de 10 años: Nivel Gurú.</li>
+  </ul>
+</details>
+
+<details>
+  <summary>Ejercicio 4.3. Palabras bonitas</summary>
+  <p>Los estudios lingüísticos modernos dicen que las palabras más bonitas del diccionario son aquellas que contienen 9 letras y empiezan por la letra <strong>H</strong>, o bien, contienen 5 letras y empiezan por la letra <strong>P</strong>.</p>
+  <p>Haz un programa que pida una palabra y e indique en un párrafo  si la palabra es bonita o no (según el patrón explicado previamente)</p>
+</details>
+
+<details>
+  <summary>Ejercicio 4.4. Convertir números a letras.</summary>
+  <p>Crea un programa que pida al usuario/a que introduzca un número del 0 al 10 y muestre por pantalla su equivalente en letras (por ejemplo, 1 se mostraría como &quot;uno&quot;, 2 como &quot;dos&quot;, etc.).</p>
+  <p>El programa deberá validar que el número introducido esté entre 0 y 10.</p>
+  <p><strong>Pista: </strong>Usar arrays.</p>
+</details>
+
+<details>
+  <summary>Ejercicio 4.5. Ejecutar operación seleccionada</summary>
+  <p>Haz un programa que pregunte al usuario/a dos números y un operador usando el control <code>select</code> de formulario:</p>
+  <p class="text-center">
+    <input type="number" id="numero1" placeholder="Escribe un numero">
+    <input type="number" id="numero2" placeholder="Escribe otro numero">
+    <select id="operador">
+      <option value="+">suma</option>
+      <option value="-">resta</option>
+      <option value="*">multiplicación</option>
+      <option value="/">división</option>
+    </select>
+    <button>calcular</button>
+  </p>
+  <p>Al final, el programa debe imprimir por pantalla el resultado de realizar la operación que contenga el <code>operador</code>.</p>
+</details>
+
+<details>
+  <summary>Ejercicio 4.6. Restaurante</summary>
+  <p>Crea un programa para un restaurante donde tienen tres platos (carne, pasta &quot;con gluten&quot; y risotto &quot;con lactosa&quot;).</p>
+  <blockquote>
+    <select id="operador">
+      <option value="carne">carne</option>
+      <option value="pasta">pasta</option>
+      <option value="rissoto">rissoto</option>
+    </select>
+  </blockquote>
+  <p>El programa debe pedir el plato que quiere el usuario/a, pero también debe pedir si éste/a tiene ninguna preferencia o intolerancia (vegano, intolerancia al gluten o intolerancia a la lactosa).</p>
+  <blockquote>
+    <input type="checkbox" id="vegano">
+    <label class="mr-4" for="vegano">Vegano</label>
+    <input type="checkbox" id="no-lactosa">
+    <label class="mr-4" for="no-lactosa">Intolerante a la lactosa</label>
+    <input type="checkbox" id="celiaco">
+    <label for="celiaco">Intolerante al gluten</label>
+  </blockquote>  
+  <p>Si la persona pide un plato <em>que puede comer</em> muestra por pantalla el mensaje &quot;<i>Perfecto, pedido correcto</i>&quot;, si no, se mostrará el mensaje &quot;<i>Usted no puede comer este plato.</i>&quot;.</p>
+  <p class="font-mono text-sm">
+    Para preguntar si está marcado un checkmark se utiliza (un ejemplo con el id="vegano") <code>document.getElementById("vegano").checked;</code>. El resultado será <code>true</code> si está marcado o <code>false</code> si no lo está.
+  </p>
+</details>
+
+<details>
+  <summary>Ejercicio 4.7. Múltiplos</summary>
+  <p>Haz un programa que pregunte al usuario/a dos números enteros que identidicarás (<code>id</code>) como <code>dividendo</code> y <code>divisor</code> respectivamente.</p>
+  <p>El <strong>divisor</strong> deberá estar comprendido entre 2 y 7.</p>
+  <p>En caso contrario, el programa deberá mostrar un mensaje de error.</p>
+  <p>Si el divisor es correcto (2-7) muestra en pantalla si el dividendo es múltiplo del divisor, o no.</p>
+  <p><strong>Pista: </strong>Usar el operador de módulo (%)</p>
+</details>
+<details>
+<summary>Ejercicio 4.8. Juguemos Piedra, papel o tijera</summary>
+  <p>Escribe un programa que te permita jugar 👊 <strong>piedra</strong>, ✋<strong>papel</strong> o ✌<strong>tijera</strong> con el ordenador.</p>
+  <p>Para ello el ordenador deberá generar un número aleatorio entre 1 y 3 que represente <strong>1. piedra</strong>, <strong>2. papel</strong> y <strong>3. tijera</strong> respectivamente, y el usuario/a deberá responder a su vez con un número entre el 1 y el 3 después de mostrar la siguiente pantalla:</p>
+  <blockquote>
+  <h2 class="text-xl text-red-700">Jugar a piedra, papel o tijera:</h2>
+  <ol>
+    <li>👊 Piedra</li>
+    <li>✋ Papel</li>
+    <li>✌ Tijera</li>
+  </ol>
+  <p>Tu elección (1-3): <input type="number" id=""></p>
+  </blockquote> 
+  <p>Si el usuario/a indica algún número diferente al solicitado, deberá aparecer el siguiente mensaje:</p> 
+  <p class="italic font-bold">«Entiendo que no quieres jugar. Adiós»</p>
+  <p>En caso contrario, indicar el ganador/a de la siguiente manera:</p>
+  <p><span class="italic font-bold">«Yo xxx y tu xxx. ¡He ganado!, o Has ganado!»</span> Según sea el caso.</p>
+  <p>Ejemplo: «Yo papel y tú tijera. ¡Has ganado!»</p>
+</details>
+
+</body>
+</html>
