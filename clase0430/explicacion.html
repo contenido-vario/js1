@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+  </script>
+
+  <style type="text/tailwindcss">
+    @import "tailwindcss"; 
+
+    @layer base {
+      :root {
+        line-height: 1.6;
+      }
+      p {
+        @apply mb-2
+      }
+
+      button {
+        @apply rounded-md bg-slate-200 border-1 border-slate-400 px-4 py-1 my-1 text-sm cursor-pointer disabled:opacity-50
+      }
+      details {
+        @apply mb-4 pb-4 border-b-slate-700 border-b-1 text-orange-800 text-xs italic font-serif
+      }
+      summary {
+        @apply text-2xl 
+      }
+
+      ol {
+        @apply list-decimal list-inside ml-6 mb-4
+      }
+      kbd, code, a {
+        @apply text-blue-800
+      }
+
+      a {
+        @apply border-b-1 
+      }
+
+      input {
+        @apply border-1
+      }
+
+      hr {
+        @apply my-3
+      }
+
+    }
+  </style>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <title>ARRAYS</title>
+</head>
+<body class="container w-5/6 m-auto">
+    <h2 class="text-xl" id="mensaje1"></h2>
+    <hr>
+    <p class="flex">
+        <label class="flex-1" for="numero-animal">Escribe la posición del animal a mostrar:</label>
+        <input class="flex-1" type="number" id="numero-animal" placeholder="Escribe un numero entero">
+    </p>
+    <p><button type="button" onclick="revelar()">Resultado</button></p>
+    <p id="mensaje2"></p>
+    <hr>
+    <p class="flex">
+        <label class="flex-1" for="animal"> Indica un animal para agregar al array:</label>
+        <input class="flex-1" type="text" id="animal" placeholder="Escribe un animal que te guste">        
+    </p>
+    <p><button type="button" onclick="agregar()">Agregar animal</button></p>
+    <p id="mensaje3"></p>
+    <script>
+        const MENSAJE1 = document.getElementById("mensaje1");
+        const MENSAJE2 = document.getElementById("mensaje2");
+        const MENSAJE3 = document.getElementById("mensaje3");
+        const NUM_ANIMAL = document.getElementById("numero-animal");
+        const ANIMAL = document.getElementById("animal");
+
+        const LITROS = 12;        
+        const animales = [
+            "gato", //0
+            "perro",//1
+            "conejo",//2
+            "perico",//3
+        ]
+        console.log("¿Cuántos animales hay en el array animales?", animales.length)
+        MENSAJE1.innerHTML = `El array animales tiene ${animales.length} animales dentro`;
+        console.table(animales);
+
+
+        function revelar() {
+            let posicion = parseInt(NUM_ANIMAL.value);
+            if (posicion <0 || posicion>animales.length-1) { // si se cumple la condicion
+                MENSAJE2.innerHTML = `Indica un número entre 0 y ${animales.length-1}`
+            } else { // y si no...
+                MENSAJE2.innerHTML = `El animal en la posicion ${posicion} es el ${animales[posicion]}`
+            }
+        }
+
+        function agregar() {
+            let nuevoAnimal = ANIMAL.value;
+            if (nuevoAnimal=="") {
+                MENSAJE3.innerHTML = `Escribe el animal a agregar`
+            } else { // y si no...
+                animales.push(nuevoAnimal)  // agrega un valor al array
+                MENSAJE3.innerHTML = `El animal ${nuevoAnimal} ha sido agregado`
+                MENSAJE1.innerHTML = `El array animales tiene ${animales.length} animales dentro<br>${animales.join('<br>')}`;
+                console.table(animales)
+            }
+        }
+    </script>
+    
+</body>
+</html>
