@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+  </script>
+
+  <style type="text/tailwindcss">
+    @import "tailwindcss"; 
+
+    @layer base {
+      :root {
+        @apply text-sm;
+        line-height: 1.5;
+      }
+
+      p {
+        @apply mb-1
+      }
+
+      button {
+        @apply rounded-md bg-slate-200 border-1 border-slate-400 px-4 py-1 my-1 text-sm cursor-pointer disabled:opacity-50
+      }
+      details {
+        @apply mb-4 py-2 border-b-slate-700 border-b-1 text-slate-800 
+      }
+      summary {
+        @apply py-1 text-base bg-slate-800 text-white font-bold
+      }
+      blockquote {
+        @apply mx-8 p-2 bg-slate-200
+      }
+
+      ol {
+        @apply list-decimal list-outside ml-6 mb-4
+      }
+
+      ul {
+        @apply list-[circle] list-outside ml-6 mb-4
+      }
+      
+      kbd, code, a {
+        @apply text-blue-800
+      }
+
+      a {
+        @apply border-b-1 
+      }
+
+      input, select {
+        @apply border-1 px-2
+      }
+
+      hr {
+        @apply my-3
+      }
+    }
+  </style>
+
+  <link rel="shortcut icon" href="arrays.svg" type="image/svg">
+  <title>Arrays</title>
+</head>
+
+<body class="container mx-auto w-5/6">
+<h1 class="font-bold text-2xl text-red-700">Ejercicios con arrays</h1>
+<p class="text-center mb-4"><a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank" rel="noopener noreferrer">Arrays</a> 🔹 <a href="https://www.w3schools.com/js/js_array_methods.asp" target="_blank" rel="noopener noreferrer">Métodos de Array</a> 🔹 <a href="https://elblogdelprogramador.com/posts/manipulacion-avanzada-arrays-splice-javascript/#gsc.tab=0" target="_blank" rel="noopener noreferrer">array.splice</a></p>
+<blockquote>
+<p class="text-sm text-center">
+  <code>
+    array.splice(posición_donde_empiezo, cuántos_elementos_borro, qué_elementos_añado)
+  </code>
+</p>
+</blockquote>
+<details>
+  <summary>Ejercicio 5.1. Mes de número a letra</summary>
+  <p>Haz un programa que:</p>
+  <ol>
+    <li>Guarde los meses del año en un array<br>(<em>dejando la primera posición <code>null</code> para que el número del mes se corresponda</em>)</li>
+    <li>Pregunte al usuario/a un mes entre 1 y 12</li> 
+    <li>Muestre el siguiente mensaje: <code>«El mes x se corresponde con xxx.»</code></li> 
+  </ol>    
+  <p class="text-sm text-center">Ejemplo: <code>«El mes 1 se corresponde con Enero.»</code></p>
+</details>
+
+<details>
+  <summary>Ejercicio 5.2. Concurso (métodos de array)</summary>
+  <p>Declara un array al cual llamarás <code>«clasificaciones»</code> con los siguientes valores:</p>
+  <p class="font-mono">Ana, Oswaldo, Raúl, Celia, María, Antonio</p>
+  <p class="text-sm">(Este es el orden de las personas es el orden de clasificación de un concurso, en un momento dado)</p>
+  <p>Al presionar el botón <code>CONCURSAR</code>, utilizando métodos de array, (deberás cambiar el array según los siguientes hechos):</p>
+  <ol>
+    <li title="Eliminamos a Celia de su posición y la insertamos antes de Raúl (array.splice)">Celia adelanta a Raúl.</li>
+    <li title="array.pop">Antonio es descalificado y se elimina del concurso.</li>
+    <li title="array.splice">Detrás de Ana y antes de Oswaldo se clasifican dos nuevos concursantes: Roberto y Amaya, en ese orden.</li>
+    <li title="array.unshift">Hay una nueva participante que pasa a encabezar la clasificación: Marta.</li>
+  </ol>
+  <p>Una vez aplicados los métodos de array pertinentes, muestra por pantalla un mensaje con el título clasificación actualizada y comprueba que se ha hecho correctamente:<br><span class="font-mono">Marta, Ana, Roberto, Amaya, Oswaldo, Celia, Raúl, María, Antonio</span>.</p>
+  
+  <blockquote>
+    <p class="text-blue-800 font-bold">Ejemplo de pantalla</p>
+    <p class="font-mono">Ana, Oswaldo, Raúl, Celia, María, Antonio</p>
+    <p><button class="bg-slate-300" type="button"><code>CONCURSAR</code></button></p>
+    <p class="font-mono">Marta, Ana, Roberto, Amaya, Oswaldo, Celia, Raúl, María, Antonio</p>
+  </blockquote>
+
+</details>
+
+<details>
+  <summary>Ejercicio 5.3. Lista de Compras</summary>
+  <p>Termina el siguiente ejercicio (<a target="_blank" href="listacompras.html">Lista de Compras</a>) según lo que pide en su enunciado.</p>
+</details>
+
+<details>
+  <summary>Ejercicio 5.4. Tareas</summary>
+  <p>Crea un programa que tenga el siguiente menú (4 botones):</p>
+  <ul>  
+    <li>Añadir tarea</li>
+    <li>Mostrar todas las tareas</li> 
+    <li>Eliminar tarea</li>
+    <li>Salir de la aplicación: (Mostrará en la pantalla la palabra <code>Gracias</code> y deshabilitará todos los botones (ver ejercicio de Galletitas.) )</li>
+  </ul>
+  <p>De esta manera tendremos un programa con un listado de tareas por hacer.</p>
+</details>
+
+<details>
+  <summary>Ejercicio 5.5. Sistema Solar</summary>
+  <p>Crea un array con el nombre de los planetas del Sistema Solar:<br>
+  <span class="font-mono">Mercurio, Venus, Tierra, Marte, Júpiter, Saturno, Urano, Neptuno, Plutón</span></p>
+  <p>Muestra su contenido por <span title="console.log">consola</span>, iterando sobre el mismo con un bucle <a target="_blank" href="https://filisantillan.com/bits/for-of/" rel="noopener"><code>for-of</code></a></p>
+  <p class="text-center bg-slate-200"><code>for(variable of iterable) { ... }</code></p>
+</details>
+
+</body>
+</html>
