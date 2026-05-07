@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./img/robot.png" type="image/x-icon">
+  <title>Frio/Tibio/Caliente</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+  </script>
+
+  <style type="text/tailwindcss">
+    @import "tailwindcss"; 
+
+    @layer base {
+      :root {
+        @apply text-sm;
+        line-height: 1.6;
+      }
+
+      body {
+        @apply container mx-auto p-5 bg-cyan-700 leading-7
+      }
+
+      main {
+        @apply w-5/6 bg-cyan-50 mx-auto p-4 border-4
+      }
+
+      h1 {
+        @apply font-bold text-white text-5xl mb-4
+      }
+      
+      h2, h3, h4 {
+        @apply font-bold text-center
+      }
+      p { @apply mb-2 }
+
+      button {
+        @apply rounded-md bg-slate-200 border-1 border-slate-400 p-2 m-6 text-sm cursor-help disabled:opacity-50 hover:bg-amber-100
+      }
+      details {
+        @apply my-4 border-b-slate-700 border-b-1 text-slate-800 bg-white 
+      }
+
+      details > div {
+        @apply p-8 text-sm
+      }
+
+      summary {
+        @apply py-1 text-base bg-slate-800 text-white font-bold
+      }
+
+      ol {
+        @apply list-decimal list-outside ml-6 mb-4
+      }
+      
+      kbd, code, a {
+        @apply text-blue-800
+      }
+
+      a {
+        @apply border-b-1 
+      }
+
+      input {
+        @apply border-1 px-2 rounded-md font-sans text-center block mx-auto
+      }
+
+      label {
+        @apply  text-center block mx-auto my-2
+      }
+
+      hr {
+        @apply my-3
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <details>
+    <summary>Enunciado</summary>
+    <div>
+      <p>Programa un juego para adivinar un número entero aleatorio, entre 1 y 500.</p>
+      <ol>
+        <li>
+          <p>Si el número es menor a 0 o mayor a 500, el programa deberá decir:<br>
+            <q>Por favor indica un número entre 0 y 500</q>
+          </p>
+        </li>
+        <li>
+          <p>Si la distancia entre el número a adivinar y el del usuario/a es de 50 o más, el programa deberá
+            mostrar:<br>
+            <q>Frío, frío: tu número es más grande que el mío</q> o <br>
+            <q>Frío, frío: tu número es más pequeño que el mío</q>, <br>
+            según sea el caso.
+          </p>
+        </li>
+        <li>
+          <p>Si la distancia entre el número a adivinar y el del usuario/a está entre 15 y 50, el programa deberá
+            mostrar:<br>
+            <q>Tibio, tibio: tu número es más grande que el mío</q> o <br>
+            <q>Tibio, tibio: tu número es más pequeño que el mío</q>, <br>
+            según sea el caso.
+          </p>
+        </li>
+        <li>
+          <p>Y si la distancia entre el número a adivinar y el del usuario/a es menor a 15, el programa deberá
+            mostrar:<br>
+            <q>Caliente, caliente: tu número es más grande que el mío</q> o <br>
+            <q>Caliente, caliente: tu número es más pequeño que el mío</q>, <br>
+            según sea el caso.
+          </p>
+        </li>
+        <li>
+          <p>Cuando el usuario acierta, debe ocultarse el botón <code>Adivinar</code>.</p>
+        </li>
+      </ol>
+      <p>En cada caso (frío, tibio, caliente o ganador) el <code>body</code> deberá tener un color de fondo que acompañe
+        este estado: Frío: azul, tibio: amarillo, caliente: rojo.</p>
+    </div>
+  </details>
+  <h1 class="text-center">Frio / Tibio / Caliente</h1>
+  <main>
+    <form onsubmit="revisar(event)">
+      <p>
+        <label for="numero">Escribe un número entre 1 y 500:</label>
+        <input id='numero' type='number' min="1" max="500" required>
+      </p>
+      <p class="text-center" id="bot">
+        <button id='boton'  type='submit'> ❓Adivinar  </button>
+      </p>
+    </form>
+
+    <p id="resultado" class="text-center"></p>
+
+  </main>
+
+  
+  <script>
+    //Acá irá tu código
+    const FONDO = document.body;
+
+    function revisar(e) {
+      e.preventDefault(); //previene que se recargue la página
+      alert(parseInt(document.getElementById("numero").value))
+    }
+  </script>
+
+</body>
+
+</html>
