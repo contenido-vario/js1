@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+  </script>
+
+  <style type="text/tailwindcss">
+    @import "tailwindcss"; 
+
+    @layer base {
+      :root {
+        @apply text-sm;
+        line-height: 1.5;
+      }
+
+      p {
+        @apply mb-1
+      }
+
+      button {
+        @apply rounded-md bg-slate-200 border-1 border-slate-400 px-4 py-1 my-1 text-sm cursor-pointer disabled:opacity-50
+      }
+      details {
+        @apply mb-4 py-2 border-b-slate-700 border-b-1 text-slate-800 
+      }
+      summary {
+        @apply py-1 text-base bg-slate-800 text-white font-bold
+      }
+      blockquote {
+        @apply mx-8 p-2 bg-slate-200
+      }
+
+      ol {
+        @apply list-decimal list-outside ml-6 mb-4
+      }
+
+      ul {
+        @apply list-[circle] list-outside ml-6 mb-4
+      }
+      
+      kbd, code, a {
+        @apply text-blue-800
+      }
+
+      a {
+        @apply border-b-1 
+      }
+
+      input, select {
+        @apply border-1 px-2
+      }
+
+      hr {
+        @apply my-3
+      }
+    }
+  </style>
+
+  <link rel="shortcut icon" href="arrays.svg" type="image/svg">
+  <title>Arrays de Objetos</title>
+</head>
+
+<body class="container mx-auto w-5/6">
+<h1 class="font-bold text-2xl text-red-700 mb-4">Ejercicios con arrays de objetos</h1>
+
+<p>Cambiar los ejercicios que hemos hecho con arrays simples a arrays de objetos de la siguiente manera:</p>
+
+<details>
+  <summary>Ejercicio 6.1. Mes de número a letra</summary>
+  <p>Haz un programa que:</p>
+  <ol>
+    <li>
+      <p>Guarde los meses del año en un array de objetos denominado <code>meses</code>con los siguientes atributos: <code>numeroMes, mesLetra, numeroDias</code>. Ejemplo:</p>
+      <code>{ numeroMes:1, mesLetra: 'enero', numeroDias: 31 }</code></li>
+    <li>Pregunte al usuario/a un mes entre 1 y 12 y lo guarde en una variable llamada <code>mesNumero</code>. Ejemplo para <code>mesNumero === 5</code></li>
+    <li>Busque el mes indicado por el usuario en el array <code>meses</code><br>
+    <code>•	<span class="text-red-700">const</span> indice = meses.<span <span class="text-red-700">findIndex</span>(mes => mes.numeroMes === mesNumero);</code></li>
+    <li>Muestre el siguiente mensaje: «<em>El mes x se corresponde con xxx y tiene xx días.</em>». </li>
+     
+  </ol>    
+  <p class="text-center">Ejemplo: «<em>El mes <b>5</b> se corresponde con <b>mayo</b> y tiene <b>31</b> dias</em>»</p>
+</details>
+
+<details>
+  <summary>Ejercicio 6.2. Lista de Compras</summary>
+  <p>Cambia el array carrito para que en vez de guardar un array simple guarde un array de objetos que indique producto y precio. (Al mostrarlo en pantalla deberá mostrar por ejemplo: <code>0. PAN, €2.35</code> etc…)</p>
+  <p>Agregar un botón <button>Total Compras</button> que recorra el array de objetos con un bucle <code>for-of</code> e indique el total de la lista de compras.</p>
+</details>
+
+<details>
+  <summary>Ejercicio 6.3. Tareas</summary>
+  <p>Cambiar el array <code>tareas</code> para que sea un array de objetos que guarde, además de la <code>tarea</code>, su <code>importancia</code> (urgente, alta, media, baja) y la <code>fechaTope</code> para realizarla.</p>
+  <p>Preguntar la <code>importancia</code> de la tarea con un control <code>select</code> 
+  <select>
+    <option>Urgente</option>
+    <option>Alta</option>
+    <option>Media</option>
+    <option>Baja</option>
+  </select>
+   y su <code>fechaTope</code> con un control de tipo <code>date</code> <input type="date" >.</p>
+
+</details>
+
+<p>Para buscar en un array de objetos en JavaScript, los métodos principales son <code>find</code>, <code>filter</code> y <code>findIndex</code>.</p>
+<ol> 
+  <li><code>find()</code>: Retorna el primer objeto que cumple con la condición especificada, o undefined si no se encuentra ninguno.  Es ideal cuando solo necesitas un objeto único. Ejemplo: <code>const persona = personas.find(p => p.nombre === 'Pepito');</code></li>
+  <li><code>filter()</code>: Retorna un nuevo array con todos los objetos que cumplen la condición.  Úsalo cuando esperes múltiples resultados. Ejemplo: 
+  <code>const tareasUrgentes = tareas.filter(t => t.importancia === 'Urgente');</code></li>
+  <li><code>findIndex()</code>: Similar a <code>find</code>, pero retorna el índice (posición) del primer objeto que cumple la condición, o -1 si no existe. Ejemplo: <code>const indice = personas.findIndex(p => p.nombre === 'Pepito');</code></li>
+</ol>
+</body>
+</html>
