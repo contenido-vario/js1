@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+  </script>
+
+  <style type="text/tailwindcss">
+    @import "tailwindcss"; 
+
+    @layer base {
+      :root {
+        @apply text-sm;
+        line-height: 1.5;
+      }
+
+      p {
+        @apply mb-1
+      }
+
+      button {
+        @apply rounded-md bg-slate-200 border-1 border-slate-400 px-4 py-1 my-1 text-sm cursor-pointer disabled:opacity-50
+      }
+      details {
+        @apply mb-4 py-2 border-b-slate-700 border-b-1 text-slate-800 
+      }
+      summary {
+        @apply py-1 text-base bg-slate-800 text-white font-bold
+      }
+      blockquote {
+        @apply mx-8 p-2 bg-slate-200
+      }
+
+      ol {
+        @apply list-decimal list-outside ml-6 mb-4
+      }
+
+      ul {
+        @apply list-[circle] list-outside ml-6 mb-4
+      }
+      
+      kbd, code, a {
+        @apply text-blue-800
+      }
+
+      a {
+        @apply border-b-1 
+      }
+
+      input, select {
+        @apply border-1 px-2
+      }
+
+      hr {
+        @apply my-3
+      }
+    }
+  </style>
+
+  <link rel="shortcut icon" href="bucles.svg" type="image/svg">
+  <title>Bucles / Métodos de String</title>
+</head>
+
+<body class="container mx-auto w-5/6">
+  <h1 class="font-bold text-2xl text-red-700 mb-4">
+    Bucles / Métodos de String
+  </h1>
+  <p class="text-center">
+    <a href="for.html" target="_blank">bucle for</a> 🔹
+    <a href="while-dowhile.html" target="_blank">bucles while y do while</a> 🔹
+    <a href="https://es.javascript.info/operators#incremento-decremento" target="_blank" rel="noopener">Operadores de incremento / decremento</a>
+  </p>
+  <details>
+    <summary>Ejercicio 7.1. Suma valores entre dos números</summary>
+    <p>Crea un programa que solicite dos números enteros y calcule la suma de los valores comprendidos entre los dos números, incluidos.</p>
+    <p>Ejemplo: 4 y 6  --> resultado = 4 + 5 + 6 = 15</p>
+  </details>
+  <details>
+    <summary>Ejercicio 7.2. Números pares del 100 al 0</summary>
+    <p>Muestra por pantalla los números pares comprendidos entre el 100 y el 0 en orden descendente.</p>
+  </details>
+  <details>
+    <summary>Ejercicio 7.3. Factorial de un número</summary>
+    <p>Realizar un programa donde el usuario introduce un número y el programa llama a una función que devuelve el <b>factorial</b> del número introducido.</p>
+    <p>El factorial de un número n (entero, no negativo) es el producto de todos los números enteros positivos inferiores o iguales a n.</p>
+    <p>Si el usuario introduce un número negativo, transformar a positivo y repintar el valor en pantalla. (método <a target="_blank" rel="noopener" href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math/abs">Math.abs(x)</a>)</p>
+    <p>Ejemplo: n = 5  --> resultado = 5 * 4 * 3 * 2 * 1 = <b>120</b></p>
+  </details>
+  <details>
+    <summary>Ejercicio 7.4. Verificar si un número entre 2 y 100 es primo</summary>
+    <p>Realizar un programa donde el usuario introduce un número entero mayor o igual a 2 y menor a 100 (validar con el formulario de HTML) y el programa verifica si el número es o no <b>primo</b>, mostrando al final uno de los siguientes dos mensajes por pantalla.</p>    
+    <p>•	<em>El número <b>4</b> no es primo. Es divisible por 2. </em>(su primer divisor)</p>
+    <p>•	<em>El número <b>7</b> es primo. No tiene divisores.</em></p>
+    <p>Un número es primo cuando es divisible sólamente por 1 y por él mismo. Para ello deberás revisar si el módulo o resto (operador %) da 0.</p>
+  </details>
+  <details>
+    <summary>Ejercicio 7.5. Calcular la secuencia de Fibonacci</summary>
+    <p>El usuario/a introduce un número por pantalla y el programa llama a una función que debe mostrar la secuencia  de Fibonacci.</p> <p>Ejemplo: Si el usuario/a introduce el 10, el resultado debe ser:</p>
+    <p><code>0, 1, 1, 2, 3, 5, 8, 13, 21, 34</code></p>
+    <p>Revisa más sobre la secuencia o sucesión de Fibonacci <a href="https://ninos.kiddle.co/Sucesi%C3%B3n_de_Fibonacci" target="_blank" rel="noopener">aquí.</a></p>
+    <p><b>Tip:</b> Guardar los números de la secuencia en un array.</p>
+  </details>
+  <details>
+    <summary>Ejercicio 7.6. Muestra un string al revés</summary>
+    <p>En este programa el usuario/a debe introducir un string y, utilizando un bucle <code>for</code>, el programa debe mostrar el string al revés.</p>
+  </details>
+  <details>
+    <summary>Ejercicio 7.7. Indica si un número es capicúa</summary>
+    <p> se refiere a cualquier número que se lee igual de izquierda a derecha que de derecha a izquierda.</p>
+    <p>Ejemplos: <code>161, 2992, 3003, 91019, 5005, 292, 2882, 2442, 9102019</code>.</p>
+    <p>La palabra capicúa viene del catalán: <b>cap</b> i <b>cua</b>, ‘cabeza y cola’.</p>
+  </details>
+  <details>
+    <summary>Ejercicio 7.8. Indica si la frase es palíndromo</summary>
+    <p>El usuario/a debe introducir una frase y el programa debe decir si la frase es un palíndromo.</p>
+    <p>Un <b>palíndromo</b> es una palabra o frase que, al descartar sus acentos, espacios en blanco y signos de puntuación, se leen igual al derecho que de revés. Ejemplo: <code><em>Yo dono rosas, oro no doy.</em></code> </p>
+    <p>Os pego un <a href="https://www.kedin.es/100-ejemplos-de-palindromos/" target="_blank" rel="noopener noreferrer">enlace</a> con 100 ejemplos de palíndromos</p>
+  </details>
+  <details>
+    <summary>Ejercicio 7.9. Suma todos los pares y los impares de un array</summary>
+    <p>Dado un array de números, el programa debe mostrar la suma de todos los números pares y la suma de todos los números impares.</p>
+    <p>Puedes pedir al usuario que escriba los números separados por comas en un control <code>&lt;input type="text"...</code>.</p>
+    <p>Y lo puedes convertir a <code>array</code> con el método <code>split</code>. He aquí un ejemplo con frases:</p>
+    <blockquote>
+      <code>
+        let frase = "Hola mundo ejemplo";<br>
+        const arrayPalabras = frase.split(' ');
+      </code>
+    </blockquote>
+    <p class="mt-4">Referencia: <a target="_blank" rel="noopener" href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/String/split">mdn</a></p>
+  </details>
+
+</body>
+</html>

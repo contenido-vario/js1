@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+  </script>
+
+  <style type="text/tailwindcss">
+    @import "tailwindcss"; 
+
+    @layer base {
+      :root {
+        @apply text-sm;
+        line-height: 1.5;
+      }
+
+      p {
+        @apply mb-1
+      }
+
+      button {
+        @apply rounded-md bg-slate-200 border-1 border-slate-400 px-4 py-1 my-1 text-sm cursor-pointer disabled:opacity-50
+      }
+      details {
+        @apply mb-4 py-2 border-b-slate-700 border-b-1 text-slate-800 
+      }
+      summary {
+        @apply py-1 text-base bg-slate-800 text-white font-bold
+      }
+      blockquote {
+        @apply mx-8 p-2 bg-slate-200
+      }
+
+      ol {
+        @apply list-decimal list-outside ml-6 mb-4
+      }
+
+      ul {
+        @apply list-[circle] list-outside ml-6 mb-4
+      }
+      
+      kbd, code, a {
+        @apply text-blue-800
+      }
+
+      a {
+        @apply border-b-1 
+      }
+
+      input, select {
+        @apply border-1 px-2
+      }
+
+      hr {
+        @apply my-3
+      }
+    }
+  </style>
+
+  <link rel="shortcut icon" href="bucles.svg" type="image/svg">
+  <title>while... do while</title>
+</head>
+
+<body class="container mx-auto w-full p-4 pb-10">
+<h1 class="font-bold text-2xl text-red-700 mb-4">Bucles <code>while</code> y <code>do while</code></h1>
+<p class="text-xl">Se utilizan <b>cuando no sabemos cuántas iteraciones (vueltas)</b> del bucle se van a ejecutar</p>
+<p>Los bucles <code>while</code> y <code>do while</code> ejecutan repetidamente un bloque de instrucciones mientras una condición sea verdadera. Una vez dentro del bucle, hay que tener claro que hay que hacer algo para que la condición cambie.</p>
+<p>Si la condición nunca se modifica, se tendrá un bucle infinito.</p>
+
+<h2 class="font-bold text-blue-800 mb-2 text-2xl">
+  <img class="inline w-10 py-8" src="./img/dos.png" alt="-">
+  2 modalidades
+</h2>
+
+<div class="flex flex-col md:flex-row gap-4">
+  <div class="flex-1 p-4"> <!-- while-->
+    <p class="mb-6">La condición puede ir al principio del bucle, como en la sentencia <code>while</code> (<em>mientras que</em>) , de modo que si antes de entrar en el bucle, ésta no se cumple, no se ejecutará ninguna iteración.
+    </p>
+    <div class="flex flex-col md:flex-row items-center md:items-start">
+      <div class="flex-1 mb-4 md:mb-0">
+        <img class="w-2/3 mx-auto md:mx-0" src="./img/while.png" alt="bucle while">
+      </div>
+      <div class="flex-2 p-4">
+        <code>
+          <b>while</b> (bistec == 'crudo') {<br>
+            &nbsp;&nbsp;...<br>
+            &nbsp;&nbsp;darVueltaAlBistec();<br>
+            &nbsp;&nbsp;...<br>
+          }  
+        </code>
+      </div>
+    </div>
+  </div>
+  <div class="flex-1 p-4"> <!-- do while-->
+    <div class="flex flex-col md:flex-row items-center md:items-start">
+      <div class="flex-1 mb-4 md:mb-0">
+        <img class="w-2/3 mx-auto md:mx-0" src="./img/dowhile.png" alt="bucle while">
+      </div>
+      <div class="flex-2 p-4">
+        <code>
+            <b>do</b> {<br>
+              &nbsp;&nbsp;...<br>
+              &nbsp;&nbsp;escalo la montaña;<br>
+              &nbsp;&nbsp;...<br>
+              } <b>while</b> (<b>!</b>alcanzoLaCima);         
+        </code>
+      </div>
+    </div>
+    <p class="mt-4">En el caso del <code>do&nbsp;while</code> (<em>hacer ... mientras que</em>), la condición puede ir al final del bloque con lo que nos aseguramos de que al menos se ejecuta una iteración del mismo.
+    </p>
+  </div>
+</div>
+<hr>
+<p>El bucle <code>while</code> se utiliza en algoritmos de "búsqueda" donde sales del mismo, apenas encuentras lo que se está buscando.</p>
+<p>El bucle <code>do while</code> normalmente se utiliza en la validación de datos (sobre todo en otros lenguajes) o en la simulación de juegos de azar. Ejemplo: Lanzamiento de un dado hasta sacar el número 6.</p>
+</body>
+</html>
