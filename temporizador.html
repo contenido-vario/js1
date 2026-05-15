@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+  </script>
+
+  <style type="text/tailwindcss">
+    @import "tailwindcss"; 
+
+    @layer base {
+      :root {
+        @apply text-sm;
+        line-height: 1.5;
+      }
+
+      p {
+        @apply mb-1
+      }
+
+      button {
+        @apply rounded-md bg-slate-200 border-1 border-slate-400 px-4 py-1 my-1 text-sm cursor-pointer disabled:opacity-50
+      }
+      details {
+        @apply mb-4 py-2 border-b-slate-700 border-b-1 text-slate-800 
+      }
+      summary {
+        @apply py-1 text-base bg-slate-800 text-white font-bold
+      }
+      blockquote {
+        @apply mx-8 p-2 bg-slate-200
+      }
+
+      ol {
+        @apply list-decimal list-outside ml-6 mb-4
+      }
+
+      ul {
+        @apply list-[circle] list-outside ml-6 mb-4
+      }
+      
+      kbd, code, a {
+        @apply text-blue-800
+      }
+
+      a {
+        @apply border-b-1 
+      }
+
+      input, select {
+        @apply border-1 px-2
+      }
+
+      hr {
+        @apply my-3
+      }
+    }
+  </style>
+
+  <link rel="shortcut icon" href="bucles.svg" type="image/svg">
+  <title>temporizador</title>
+</head>
+
+<body class="container mx-auto w-full p-4 pb-10">
+<h1 class="font-bold text-2xl text-red-700 mb-4">Temporizador</h1>
+<p class="text-xl">
+<div class="flex flex-col md:flex-row gap-4">
+  <div class="flex-1 p-4">
+    <p class="mb-6">La función <code><b>setInterval</b></code> se utiliza para poner una temporizador en el código. Un temporizador es una función que ejecuta automáticamente otra función de manera cíclica, esperando un intervalo de tiempo específico entre cada ejecución. La función <code>setInterval</code> no se detiene a menos se indique explícitamente.</p> 
+    <h2 class="mb-6 underline text-lg text-sky-700">Sintaxis:</h2>
+    <blockquote class="mb-6">
+      <code>let intervalo = <b>setInterval</b>(funcionAEjecutar, milisegundos);</code>
+    </blockquote>
+    <p class="mb-6">Cada 1000ms equivale a 1 segundo.</p>
+    <h3 class="mb-6 underline">Detener el temporizador:</h3>
+    <p class="mb-6">Para frenarlo, usamos la instrucción <code>clearInterval</code>.</p>
+    <blockquote class="mb-6">
+      <code><b>clearInterval</b>(intervalo);</code>
+    </blockquote>  
+    <p class="mb-6">A tener en cuenta:</p>
+    <ol>
+      <li><b>No es exacto:</b> Si el navegador está muy ocupado procesando otras cosas pesadas, el intervalo podría retrasarse unos milisegundos. No es un reloj de alta precisión suizo, pero para la mayoría de las tareas web funciona perfecto.</li>
+      <li><b>Identificador único:</b> Siempre que creas un <code>setInterval</code>, la función crea un identificador interno. Es por esto que se guarda en una variable: para poder detenerlo con <code>clearInterval</code>.</li>
+    </ol>
+    <h2 class="mb-6 underline text-lg text-sky-700">Ejemplo (Reloj Digital)</h2>
+    <p class="mb-6 font-bold">HTML</p>
+    <blockquote><code><pre>
+      &lt;!DOCTYPE html&gt;
+      &lt;html lang="es"&gt;
+      &lt;head&gt;
+      &lt;meta charset="UTF-8"&gt;
+      &lt;style&gt;&gt;
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        #reloj {
+            font-size: 5rem;
+            border: 5px solid #bdc3c7;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #000;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        &lt;/style&gt;
+        &lt;head&gt;
+        &lt;body&gt;
+
+        &lt;div&gt; id="reloj">00:00:00&lt;/div&gt;
+
+        &lt;script&gt; src="script.js"&gt;&lt;/script&gt;
+        &lt;/body&gt;
+      &lt;/html&gt;
+    </pre></code></blockquote>
+    <p class="mb-6 font-bold">JavaScript</p>
+    <blockquote><code><pre>
+      function actualizarReloj() {
+        // 1. Obtenemos la fecha y hora actual
+        const ahora = new Date();
+        
+        // 2. Extraemos horas, minutos y segundos
+        let horas = ahora.getHours();
+        let minutos = ahora.getMinutes();
+        let segundos = ahora.getSeconds();
+    
+        // 3. Formateamos para que siempre tengan 2 dígitos (ej: "05" en vez de "5")
+        horas = horas &lt; 10 ? "0" + horas : horas;
+        minutos = minutos &lt; 10 ? "0" + minutos : minutos;
+        segundos = segundos &lt; 10 ? "0" + segundos : segundos;
+    
+        // 4. Creamos el string de tiempo
+        const tiempoString = `${horas}:${minutos}:${segundos}`;
+    
+        // 5. Lo inyectamos en el elemento con id "reloj"
+        document.getElementById("reloj").textContent = tiempoString;
+    }
+    
+    // Ejecutamos la función una vez al inicio 
+    actualizarReloj();
+    
+    // Configuramos el intervalo para que se repita cada segundo
+    setInterval(actualizarReloj, 1000);
+    </pre></code></blockquote>
+</body>
+</html>
