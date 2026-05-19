@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+  </script>
+
+  <style type="text/tailwindcss">
+    @import "tailwindcss"; 
+
+    @layer base {
+      :root {
+        @apply text-sm;
+        line-height: 1.5;
+      }
+
+      p { @apply mb-4}
+
+      button {
+        @apply rounded-md bg-slate-200 border-1 border-slate-400 px-4 py-1 my-1 text-sm cursor-pointer disabled:opacity-50
+      }
+
+      details { @apply mb-4 py-2 border-b-slate-700 border-b-1 text-slate-800 }
+      summary { @apply py-1 text-base bg-slate-800 text-white font-bold }
+      blockquote { @apply mx-4 mb-4 p-2 bg-slate-100 }
+
+      ol { @apply list-decimal list-outside ml-6 mb-4 }
+
+      ul { @apply list-[circle] list-outside ml-8 mb-4 }
+      
+      kbd, code, a { @apply text-blue-800 }
+
+      var { @apply text-pink-600 font-mono }
+
+      a { @apply border-b-1 }
+
+      input, select {
+        @apply border-1 px-2
+      }
+
+      hr { @apply my-3 }
+    }
+  </style>
+
+  <link rel="shortcut icon" href="./img/function.svg" type="image/svg">
+  <title>funciones flecha</title>
+</head>
+
+<body class="container mx-auto w-full p-2 pb-10">
+  <h1 class="font-bold text-3xl text-red-700 mb-4">Tipos de función en JavaScript</h1>
+  <p>
+    En JavaScript podemos definir una función de dos formas diferentes. Aunque ambas formas sirven para
+    definir bloques de código que se pueden ejecutar más tarde, la diferencia principal radica en cómo se crean y cómo las maneja el motor de JavaScript antes de ejecutar el código.
+  </p>
+  <h2 class="font-bold text-blue-800 text-2xl">
+    <img class="inline w-10 py-4" src="./img/dos.png" alt="-">
+    Estas dos modalidades son:
+  </h2>
+  <div class="flex flex-col md:flex-row gap-4">
+    <div class="flex-1 p-2 md:border-r-1"> <!-- funciones declaradas -->
+      <h3 class="font-bold mb-6 text-red-700">FUNCIONES DECLARADAS (o clásicas)</h3>
+      <p>Se definen usando la palabra clave <code>function</code>. El navegador las lee antes de ejecutar cualquier otra cosa. En consecuencia, se puede llamar a la función antes de la línea donde se escribió y funcionará perfectamente. (A este proceso se le conoce como <code><em>hoisting</em></code>.)
+      </p>
+      <p class="font-bold">Sintaxis</p>
+      <blockquote>
+        <code>
+          function <var>nombre</var>([parameters...]) {<br>
+            &nbsp;&nbsp;... instrucciones...<br>
+            &nbsp;&nbsp;[<var>return</var> valor;]<br>
+          }
+        </code>
+      </blockquote>
+      <p class="font-bold">Ejemplo</p>
+      <blockquote>
+        <code>
+          let x = cuadrado(5); <br>
+          <span class="text-green-700 text-sm font-bold">
+          // ¡Funciona! Aunque la instrucción esté arriba<br><br>
+          </span>
+          function <var>cuadrado</var>(numero) {<br>
+            &nbsp;&nbsp;<var>return</var> numero * numero<br>
+          }
+        </code>
+      </blockquote>
+    </div>
+    <div class="flex-1 p-2"> <!-- funciones expresadas -->
+      <h3 class="font-bold text-red-700">FUNCIONES EXPRESADAS</h3>
+      <p>En este caso, la función se crea y se asigna a una variable (como si fuera un valor). Es la base de las famosas <code>Arrow Functions</code> (funciones flecha).</p>
+      <p>Las funciones flecha <mark>se comportan como cualquier otra variable</mark>. Si se intenta llamar antes de definirla, JavaScript <b>lanzará un error</b> porque la variable aún no ha sido inicializada.</p>
+      <p class="font-bold">Sintaxis</p>
+      <blockquote>
+        <code>
+          const <var>variable</var> = function <var><b>nombre</b></var>([parameters...]) {<br>
+            &nbsp;&nbsp;... instrucciones...<br>
+            &nbsp;&nbsp;[<var>return</var> valor;]<br>
+          }
+        </code>
+      </blockquote>
+      <p>Este tipo de funciones puede ser <b>anónima</b>, es decir, la función como tal, no tiene por qué tener un nombre. Cuando las funciones son anónimas se denominan también funciones <var>lambda</var></p>
+      <p class="font-bold">Sintaxis (anónima)</p>
+      <blockquote>
+        <code>
+          const <var>variable</var> = function ([parameters...]) {<br>
+            &nbsp;&nbsp;... instrucciones...<br>
+            &nbsp;&nbsp;[<var>return</var> valor;]<br>
+          }
+        </code>
+      </blockquote>
+      <p class="font-bold">Ejemplo</p>
+      <blockquote>
+        <code>
+          let x = <var>sqr</var>(5);<br>
+          <span class="text-green-700 text-sm font-bold">
+          // Nótese que se llaman por su nombre<br>
+          // <small>❌</small> ¡Error! Cannot access '<b>sqr</b>' before initialization<br><br>
+          </span>
+          const <var>sqr</var> = function <var>cuadrado</var>(numero) {<br>
+            &nbsp;&nbsp;<var>return</var> numero * numero<br>
+          }
+        </code>
+      </blockquote>
+    </div>
+  </div>
+  <h2 class="font-bold text-2xl text-blue-800 mb-4">Funciones expresadas</h2>
+  <p>Utilizar funciones expresadas permite crear una función en el interior de una variable, lo que permitirá posteriormente ejecutar la variable (como si fuera una función).</p>
+  <div class="flex flex-col md:flex-row gap-4">
+    <div class="flex-2 pb-2">
+      <blockquote class="mb-4">
+        <code>
+        const <var><mark>sqr</mark></var> = function (numero) { <var>return</var> numero * numero }<br>
+        let <var>radio</var> = 2;<br>
+        alert(<var><mark>sqr</mark>(radio)</var>); 
+        <span class="text-green-700 text-sm font-bold">
+          // muestra 4
+        </span>
+        </code>
+      </blockquote>
+      <p>Las funciones expresadas son convenientes cuando se pasa una función como argumento a otra función.</p>
+      <blockquote class="mb-4">
+        <code>
+        <span class="text-green-700 text-sm font-bold">// MOSTRAR EL AREA DE UN CIRCULO</span><br>
+        const <var><mark>sqr</mark></var> = function (numero) { <var>return</var> numero * numero }<br><br>
+        function <b>areaCirculo</b>(<var>radio2</var>) {<br>
+        &nbsp;&nbsp;return Math.PI * radio2 ;<br> 
+        }<br><br>
+        let <var>radio</var> = 2;<br>
+        alert(`El area del círculo es: ${<b>areaCirculo</b>(<var><mark>sqr</mark></var>(<var>radio</var>))}`);<br> 
+        <span class="text-green-700 text-sm font-bold">// muestra 4 </span>
+        </code>
+      </blockquote>
+    </div>  
+    <div class="flex-1 p-4">
+      <img src="./img/circulo.png" alt="área del círculo">
+    </div>
+  </div>
+  <p>Adicionalmente, las funciones expresadas obligan a tener en orden el código y evitan comportamientos extraños causados por el <em>hoisting</em>.</p>
+  <hr>
+  <h2 class="font-bold text-2xl text-blue-800 mb-4">Funciones flecha</h2>
+  <p class="text-lg">Las funciones flecha son una forma corta de escribir funciones anónimas expresadas a partir de la versión <b>ECMAScript 6</b>. Para transformar una <b>función expresada</b> en una <b>función flecha</b> se realiza el siguiente procedimiento:</p>
+  <ol>
+    <li><p>Creamos la función expresada:</p>
+      <blockquote class="w-2/3">
+        <code>
+          const <var>saludar</var> = function () {<br>
+          &nbsp;&nbsp;alert("Hola gente");<br>
+        }
+        </code>
+      </blockquote>
+    </li>
+    <li><p>Quitamos la palabra <code>function</code> y entre el paréntesis y la llave escribimos <code><b>=></b></code> (<i>lo cual forma una flecha</i>)</p>
+      <blockquote class="w-2/3">
+        <code>
+          const <var>saludar</var> = () <mark>=></mark> {<br>
+          &nbsp;&nbsp;alert("Hola gente");<br>
+        }
+        </code>
+      </blockquote>
+    </li>
+    <li><p>Si la función tiene una sola instrucción se pueden omitir las llaves <code>{     }</code> (<em>de lo contrario no</em>)</p>
+        <blockquote class="w-2/3">
+        <code>
+          const <var>saludar</var> = () => alert("Hola gente");
+        </code>
+      </blockquote>
+    </li>
+    <li>
+      <p>	Cuando una función flecha <span class="underline text-red-700">sólo recibe un parámetro</span> se pueden eliminar los parèntesis. <br>
+      (<i>Si no hay parámetros o hay más de un parámetro, no.</i>).	Ejemplo: </p>
+        <blockquote class="w-2/3">
+        <code>
+          const <var>saludo</var> = <var>persona</var> => alert(`Hola <b>${</b><var>persona</var><b>}</b>`);
+        </code>
+      </blockquote>
+    </li>
+  </ol>
+  <p class="text-lg">Para ejecutar una función flecha:</p>
+  <blockquote class="w-2/3">
+    <code>
+      saludar();<br>
+      <span class="text-green-700 text-sm font-bold">// O </span><br>
+      saludo('<var>Laurie</var>');
+    </code>
+  </blockquote>
+  <hr>
+  <h3 class="font-bold text-xl text-blue-800 my-4">Limitaciones de las funciones flecha</h3>
+  <p>A pesar de todas las ventajas que ofrecen, las funciones flechas son limitadas y no se pueden utilizar en todas las situaciones.<br>
+  Las funciones flecha <code>() => {}</code> son fantásticas por su sintaxis corta, pero no se diseñaron para reemplazar por completo a las funciones tradicionales. Su comportamiento interno es muy diferente. (<i>Recordaremos estas limitaciones al crear y utilizar <code>clases</code></i>)</p>
+  <ul>
+    <li>
+      <p class="bg-slate-100 text-blue-800 font-semibold">No se pueden utilizar como <b>constructor</b>.</p>
+      <p><b>Las funciones tradicionales en JavaScript</b> pueden actuar como "fábricas" de objetos (<i>clases</i>) al invocarlas con la palabra clave <code>new</code>. Al hacer esto, JavaScript crea un nuevo objeto y crea un enlace a su propiedad <code>prototype</code>.<br>
+      <b>Las funciones flecha</b> no tienen una propiedad <code>prototype</code> y no están diseñadas internamente con la estructura interna para construir objetos.</p>
+    </li>
+    <li>
+      <p class="bg-slate-100 text-blue-800 font-semibold">No tiene sus propios enlaces a <code>this</code> o <code>super</code> y por lo tanto, <mark>no se debe usar como método</mark>.</p>
+      <p><b>En una función tradicional</b>, el valor de la palabra clave <code>this</code> es dinámico: depende de cómo y dónde se invoque la función.<br>
+      Si se llama como método de un objeto, <code>this</code> apunta a ese objeto.<br>
+      <b>Si se intenta usar una función flecha</b> como método de un objeto, <code>this</code> no apuntará al objeto, sino al objeto <code>window</code> del navegador. Lo mismo ocurre con <code>super</code>.</p>
+    </li>
+
+    <li>
+      <p class="bg-slate-100 text-blue-800 font-semibold">No tiene argumentos ni puede usar la palabra clave <code>new.target</code>.</p>
+      <p><b>En las funciones tradicionales</b>, existe un objeto oculto llamado <code>arguments</code> que contiene un array con todos los parámetros que se le pasaron a la función, incluso si no se definieron explícitamente. <b>Las funciones flecha no lo tienen</b>.<br>
+      La palabra clave <code>new.target</code>, es una propiedad que permite detectar si una función fue llamada como un constructor (usando <code>new</code>).<br>Dado que las funciones flecha no pueden ser constructores, <code>new.target</code> no existe dentro de ellas. (<i>devolvería un error</i>)</p>
+    </li>
+    <li>
+      <p class="bg-slate-100 text-blue-800 font-semibold">No son aptas para los métodos <code>call</code>, <code>apply</code> y <code>bind</code>, que generalmente se basan en establecer un ámbito o alcance.</p>
+      <p>Los métodos <code>call()</code>, <code>apply()</code> y <code>bind()</code> existen en JavaScript para permitirte forzar el objeto que queremos que sea el <code>this</code> dentro de una función. Podemos tener una función suelta e indicar: "<i>Ejecútate, pero haz que this sea el Objeto X</i>".<br>
+      Dado que las funciones flecha tienen un <code>this</code> (estático e inmutable desde que nacen), estos métodos no funcionan con ellas. JavaScript ignorará por completo el objeto que se intente pasarle.</p>
+    </li>
+    <li>
+      <p class="bg-slate-100 text-blue-800 font-semibold">No se puede utilizar <code>yield</code> dentro de su cuerpo.</p>
+      <p>En JavaScript existen unas funciones especiales llamadas <b>Funciones Generadoras</b> (<code>function*</code>). Estas funciones pueden pausar su ejecución en medio del código mediante la palabra clave <code>yield</code> y reanudarla más tarde.<br>
+      <b>La sintaxis de las funciones flecha no es compatible con el diseño de los generadores</b>.<br> No existe tal cosa como un <code>const miGenerador = *() => { }</code>. Por lo tanto, si se intentas meter un <code>yield</code> dentro de una función flecha, JavaScript lanzará un error de sintaxis inmediatamente.</p>
+    </li>
+  </ul>
+
+</body>
+
+</html>
