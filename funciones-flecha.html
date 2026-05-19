@@ -86,9 +86,9 @@
       </blockquote>
     </div>
     <div class="flex-1 p-2"> <!-- funciones expresadas -->
-      <h3 class="font-bold text-red-700">FUNCIONES EXPRESADAS</h3>
+      <h3 class="font-bold text-red-700 mb-6">FUNCIONES EXPRESADAS</h3>
       <p>En este caso, la función se crea y se asigna a una variable (como si fuera un valor). Es la base de las famosas <code>Arrow Functions</code> (funciones flecha).</p>
-      <p>Las funciones flecha <mark>se comportan como cualquier otra variable</mark>. Si se intenta llamar antes de definirla, JavaScript <b>lanzará un error</b> porque la variable aún no ha sido inicializada.</p>
+      <p>Las funciones expresadas <mark>se comportan como cualquier otra variable</mark>. Si se intenta llamar antes de definirla, JavaScript <b>lanzará un error</b> porque la variable aún no ha sido inicializada.</p>
       <p class="font-bold">Sintaxis</p>
       <blockquote>
         <code>
@@ -123,7 +123,7 @@
       </blockquote>
     </div>
   </div>
-  <h2 class="font-bold text-2xl text-blue-800 mb-4">Funciones expresadas</h2>
+  <h2 class="font-bold text-2xl text-blue-800 mb-6">Funciones expresadas</h2>
   <p>Utilizar funciones expresadas permite crear una función en el interior de una variable, lo que permitirá posteriormente ejecutar la variable (como si fuera una función).</p>
   <div class="flex flex-col md:flex-row gap-4">
     <div class="flex-2 pb-2">
@@ -155,8 +155,8 @@
       <img src="./img/circulo.png" alt="área del círculo">
     </div>
   </div>
-  <p>Adicionalmente, las funciones expresadas obligan a tener en orden el código y evitan comportamientos extraños causados por el <em>hoisting</em>.</p>
-  <hr>
+  <p class="mb-8">Adicionalmente, las funciones expresadas obligan a tener en orden el código y evitan comportamientos extraños causados por el <em>hoisting</em>.</p>
+  <hr class="border-2">
   <h2 class="font-bold text-2xl text-blue-800 mb-4">Funciones flecha</h2>
   <p class="text-lg">Las funciones flecha son una forma corta de escribir funciones anónimas expresadas a partir de la versión <b>ECMAScript 6</b>. Para transformar una <b>función expresada</b> en una <b>función flecha</b> se realiza el siguiente procedimiento:</p>
   <ol>
@@ -178,7 +178,8 @@
         </code>
       </blockquote>
     </li>
-    <li><p>Si la función tiene una sola instrucción se pueden omitir las llaves <code>{     }</code> (<em>de lo contrario no</em>)</p>
+    <li>
+      <p>Si una función flecha solo tiene una línea de código, se pueden quitar las llaves <code>{     }</code> y la palabra <code>return</code> (<em>de lo contrario no</em>). JavaScript asume automáticamente que se quiere devolver ese valor.</p>
         <blockquote class="w-2/3">
         <code>
           const <var>saludar</var> = () => alert("Hola gente");
@@ -215,9 +216,8 @@
     </li>
     <li>
       <p class="bg-slate-100 text-blue-800 font-semibold">No tiene sus propios enlaces a <code>this</code> o <code>super</code> y por lo tanto, <mark>no se debe usar como método</mark>.</p>
-      <p><b>En una función tradicional</b>, el valor de la palabra clave <code>this</code> es dinámico: depende de cómo y dónde se invoque la función.<br>
-      Si se llama como método de un objeto, <code>this</code> apunta a ese objeto.<br>
-      <b>Si se intenta usar una función flecha</b> como método de un objeto, <code>this</code> no apuntará al objeto, sino al objeto <code>window</code> del navegador. Lo mismo ocurre con <code>super</code>.</p>
+      <p><b>En una función tradicional</b>, <code>this</code> se utiliza para referenciar al  elemento que dispara un evento.<br>
+      <b>Al usar una función flecha</b>, <code>this</code> apuntará al objeto global (<code>window</code>), rompiendo el código. Lo mismo ocurre con <code>super</code> (no se puede usar porque las funciones flecha no tienen enlace a <code>super</code>, el cual se usa para heredar clases).</p>
     </li>
 
     <li>
@@ -236,6 +236,29 @@
       <b>La sintaxis de las funciones flecha no es compatible con el diseño de los generadores</b>.<br> No existe tal cosa como un <code>const miGenerador = *() => { }</code>. Por lo tanto, si se intentas meter un <code>yield</code> dentro de una función flecha, JavaScript lanzará un error de sintaxis inmediatamente.</p>
     </li>
   </ul>
+  <h3 class="font-bold text-xl text-blue-800 my-4">Ventajas de las funciones flecha</h3>
+  <p>El cambio de comportamiento en las funciones flechas se debe a la sintaxis que se usa para crearla.<br>Al quitar la palabra clave <code>function</code> y usar la flecha <code>=></code>, se le estás indicando al motor de JavaScript: <em>"Quiero una función ligera"</em>.</p>
+
+  <p><b>Las funciones tradicionales</b> (las que llevan la palabra <code>function</code>) son objetos muy "pesados" internamente. Cada vez que se crea una, JavaScript tiene que crear los siguientes objetos por si acaso se decide usarlos, con el consiguiente consumo de memoria y tiempo de procesamiento:</p>
+
+  <ol>
+    <li>Crear un objeto <code>prototype</code> para poder usarlo con <code>new</code> (en clases).</li>
+    <li>Crear un array <code>arguments</code> asociado a la función.</li>
+    <li>Configurar los mecanismos para que <code>this</code> cambie dinámicamente según quién ejecute la función.</li>
+  </ol>
+
+<p>Los creadores de JavaScript se dieron cuenta de que el 90% de las veces no se utilizan constructores, ni <code>arguments</code>, ni un <code>this</code> dinámico que cambie de forma impredecible. Al programar una función, la mayoría de las veces solo se desea programar simplemente un bloque de código.</p>
+
+<p>De allí nacen las <b>funciones flecha</b> las cuales son como una versión recortada y optimizada de una función tradicional. Al quitar la palabra clave <code>function</code>:</p>
+<ul>
+  <li>Se ahorra código al ser más limpia visualmente.</li>
+  <li>Se ahorras memoria al no tener <code>prototype</code>, <code>arguments</code> ni lógica interna para <code>this</code>, y por lo tanto es mucho más ligera para el motor de JavaScript.</li>
+</ul>
+
+<p>Las características pesadas se pierden a cambio de un rendimiento más limpio y un <code>this</code> predecible que no se rompe cuando se trabaja con asincronía.</p>
+
+<p>Tanto <b>Astro</b> como los frameworks modernos de JavaScript (como <b>React</b>, <b>Angular</b>, <b>Vue</b>, <b>Svelte</b> o incluso en el lado del servidor con <b>Node.js/Express</b>) utilizan en su sintaxis, funciones flecha.</p>
+<p>También son usadas por los métodos de array (<code>.map()</code>, <code>.filter()</code>, .<code>forEach()</code>, <code>.reduce()</code>, etc.).</p>
 
 </body>
 
