@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+  </script>
+
+  <style type="text/tailwindcss">
+    @import "tailwindcss"; 
+
+    @layer base {
+      :root {
+        @apply text-sm;
+        line-height: 1.5;
+      }
+
+      p {
+        @apply mb-6 
+      }
+
+      button {
+        @apply rounded-md bg-slate-200 border-1 border-slate-400 px-4 py-1 my-1 text-sm cursor-pointer disabled:opacity-50
+      }
+      details {
+        @apply mb-4 py-2 border-b-slate-700 border-b-1 text-slate-800 
+      }
+      summary {
+        @apply py-1 text-base bg-slate-800 text-white font-bold
+      }
+      blockquote {
+        @apply mx-8 p-2 bg-slate-200
+      }
+
+      ol {
+        @apply list-decimal list-outside ml-6 mb-4
+      }
+
+      ul {
+        @apply list-[circle] list-outside ml-6 mb-4
+      }
+      
+      kbd, code, a {
+        @apply text-blue-800
+      }
+
+      var {
+        @apply text-pink-700
+      }
+
+      a {
+        @apply border-b-1 
+      }
+
+      input, select {
+        @apply border-1 px-2
+      }
+
+      hr {
+        @apply my-3
+      }
+    }
+  </style>
+
+  <link rel="shortcut icon" href="bucles.svg" type="image/svg">
+  <title>Escuchadores</title>
+</head>
+
+<body class="container mx-auto w-full p-4 pb-10">
+  <h1 class="font-bold text-2xl text-red-700 mb-4">Escuchadores de Evento</h1>
+  <p class="text-xl">
+  <div class="flex flex-col md:flex-row gap-4">
+    <div class="flex-1 p-4">
+      <p>Un escuchador de evento, es como un "guardia de seguridad" que se asignas a un elemento HTML específico (un
+        botón, un formulario...) al cual se le desea asignar funciones (el típico
+        <code>&lt;button onclick='<em>funcion()</em>'&gt;</code> ). Este guardia se queda esperando a que ocurra una
+        acción (<em>evento</em>)concreto (un clic, un scroll, una pulsación de tecla). Cuando el evento sucede, "<em>el
+          guardia</em>" ejecuta una función de inmediato.</p>
+      <p>Para crearlos usamos el método <code>addEventListener()</code></p>.
+      <figure class="mb-6 text-center">
+        <img class="inline" src="./img/escuchador.png" alt="-">
+      </figure>
+      <h2 class="mb-6 font-bold text-xl text-sky-700">Sintaxis:</h2>
+      <blockquote class="mb-6">
+        <code>
+        elementoHTML.addEventListener(evento, funcionCallback, opciones);
+      </code>
+      </blockquote>
+      <ul class="mb-6">
+        <li><strong>elemento:</strong> El elemento HTML que se quiere vigilar.<br>
+          Ejemplo: <code>const CALCULAR = document.getElementById("calcular")<br></code>
+        </li>
+        <li><strong>evento:</strong> el nombre del evento. (ejemplo: '<code>click</code>', '<code>keydown</code>',
+          '<code>submit</code>').</li>
+        <li><strong>funcionCallback:</strong> La función que contiene las instrucciones de lo que debe pasar cuando
+          ocurra el evento. (<em>Callback</em> en inglés significa <em>llamar de vuelta</em>)</li>
+        <li><strong>opciones</strong> (Opcional): Alguna otra configuración para cambiar el comportamiento del
+          escuchador, por ejemplo, si se debe ejecutar una sola vez.</li>
+      </ul>
+
+      <h3 class="mb-6 font-bold text-lg text-sky-700">
+        Ejemplo sin escuchador:
+      </h3>
+      <blockquote class="mb-6"><code>
+&lt;p&gt;&lt;button id='<var>saludo1</var>' onclick='<var>saludar1()'</var>&gt;Clica aquí&lt;/button&gt;&lt;/p&gt;
+</code></blockquote>
+
+      <h3 class="mb-6 font-bold text-lg text-sky-700">
+        Ejemplo con escuchador:
+      </h3>
+      <blockquote class="mb-6"><code>
+&lt;p&gt;&lt;button id='<var>saludo2</var>'&gt;Clica aquí&lt;/button&gt;&lt;/p&gt;<br><br>
+&lt;script&gt;<br>
+&nbsp;&nbsp;const <var>SALUDO</var> = document.getElementById('<var>saludo2</var>')<br><br>
+&nbsp;&nbsp;// 1. Guardamos la función flecha (recibiendo el parámetro 'e' opcional)<br> 
+&nbsp;&nbsp;const <var>saludar2</var> = (e) => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;alert("¡Hola!");<br>
+&nbsp;&nbsp;};<br><br>
+&nbsp;&nbsp;// 2. Registramos el escuchador pasando SOLO la referencia de la función<br>
+&nbsp;&nbsp;<var>SALUDO</var>.addEventListener('click', <var>saludar2</var>);<br>
+
+&lt;/script&gt;<br>
+...
+</code></blockquote>
+
+      <h2 class="mb-6 font-bold text-xl text-sky-700">El objeto de evento (<code>e o event</code>)</h2>
+      <p>Cuando un evento ocurre, JavaScript crea automáticamente un objeto con toda la información sobre lo que acaba
+        de pasar y se lo pasa como argumento a la función Callback. Para guardarlo se recibe en un parámetro llamado
+        convencionalmente <code>e</code> o <code>event</code>. Este objeto guarda varias propiedades y métodos
+        importantes:</p>
+      <ul class="mb-6">
+        <li><code>e.target</code>: El elemento exacto que originó el evento.</li>
+        <li><code>e.currentTarget</code>: El elemento que tiene el escuchador asignado.</li>
+        <li><code>e.preventDefault()</code>: Un método crucial para detener el comportamiento por defecto del navegador
+          (por ejemplo, evitar que una página se recargue al enviar un formulario).</li>
+      </ul>
+
+      <p>Dejar miles de escuchadores activos en una aplicación puede hacer que consuma mucha memoria. Cuando ya no se
+        necesita vigilar un elemento, se debe remover el escuchador. Para poder remover un escuchador la función
+        callback no puede ser anónima (o una función flecha directa).</p>
+
+      <h2 class="mb-6 font-bold text-xl text-sky-700">Remover un Escuchador. Sintaxis:</h2>
+      <blockquote class="mb-6">
+        <code>
+        elementoHTML.removeEventListener(evento, funcionCallback);
+      </code>
+      </blockquote>
+
+      <p><strong>⚠️ Recuerda:</strong> Si no almacenamos la función en una variable entonces no podremos removerla. No habría forma de “volver a leer” los escuchadores de evento asignados por <code>addEventListener</code>.</p>
+
+      <h3 class="mb-6 font-bold text-lg text-sky-700">
+        Ejemplo:
+      </h3>
+      <blockquote><code>
+        <var>SALUDO</var>.removeEventListener('click', <var>saludar2</var>);
+      </code></blockquote>
+
+</body>
+
+</html>
