@@ -17,7 +17,7 @@
       }
 
       p {
-        @apply mb-1
+        @apply py-2
       }
 
       button {
@@ -56,6 +56,7 @@
       hr {
         @apply my-3
       }
+
     }
   </style>
 
@@ -69,25 +70,76 @@
   </h1>
   <p class="text-center">
     <a href="funciones.html" target="_blank">Funciones</a> 🔹
-    <a href="funciones-flecha.html" target="_blank">Funciones flecha</a>🔹<a href="escuchadores.html" target="_blank">Escuchadores</a>
+    <a href="funciones-flecha.html" target="_blank">Funciones flecha</a>🔹<a href="escuchadores.html"
+      target="_blank">Escuchadores</a>
   </p>
   <details>
     <summary>Ejercicio 8.1. Encontrar número primo</summary>
-    <p>Crea un programa que revise los números en un array hasta que encuentre el primer número primo del mismo. Aprovecha la función número primo que has desarrollado en el ejercicio anterior. Pista: hacer con do-while.</p>    
+    <p>Crea un programa que revise los números en un array hasta que encuentre el primer número primo del mismo.
+      Aprovecha la función número primo que has desarrollado en el ejercicio anterior. Pista: hacer con do-while.</p>
   </details>
   <details>
     <summary>Ejercicio 8.2. Verificar número del DNI</summary>
-    <p>El usuario debe introducir un DNI con su letra y el programa debe llamar a una función que revise si la letra es correcta o no.
-    (<a href="https://seresco.es/recursos-humanos-rrhh/calcular-letra-del-nif/" target="_blank" rel="noopener noreferrer">Cálculo del dígito de control del NIF/NIE (Dividir con %)</a>)</p>    
+    <p>El usuario debe introducir un DNI con su letra y el programa debe llamar a una función que revise si la letra es
+      correcta o no.
+      (<a href="https://seresco.es/recursos-humanos-rrhh/calcular-letra-del-nif/" target="_blank"
+        rel="noopener noreferrer">Cálculo del dígito de control del NIF/NIE (Dividir con %)</a>)</p>
   </details>
   <details>
     <summary>Ejercicio 8.3. Funciones Flecha</summary>
-    <p>Crear un nuevo repositorio y copiar todos los ejercicios condicionales allí (<a href="condicionales.html" target="_blank">Ejercicios condicionales</a>).</p>
+    <p>Crear un nuevo repositorio y copiar todos los ejercicios condicionales allí (<a href="condicionales.html"
+        target="_blank">Ejercicios condicionales</a>).</p>
     <p>Cambiar todas las funciones tradicionales por <b>funciones flecha</b>.</p>
   </details>
   <details>
     <summary>Ejercicio 8.4. Escuchadores</summary>
-    <p>Usando los archivos de los ejercicios condicionales del ejercicio 8.3, cambiar todas las llamadas funciones  por <b>escuchadores de evento</b>.</p>
+    <p>Usando los archivos de los ejercicios condicionales del ejercicio 8.3, cambiar todas las llamadas funciones por
+      <b>escuchadores de evento</b>.</p>
   </details>
+  <details open>
+    <summary>Ejercicio 8.5. Horóscopo chino</summary>
+    <p>Crea un programa que muestre el signo aproximado del horóscopo chino dado un año y mes de nacimiento.</p>
+    <p>Para conocer el signo del horóscopo chino, debemos extraer el residuo de la división del año de nacimiento entre 12. <br>El residuo, <em>entre 0 y 11</em>, está asociado a un signo según la siguiente tabla:</p>
+    <table class="w-5/6 border-2 text-center">
+      <tr>
+        <th>Resto</th>
+        <td>0</td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+        <td>10</td>
+        <td>11</td>
+      </tr>
+      <tr>
+        <th>Signo</th>
+        <td>Mono</td>
+        <td>Gallo</td>
+        <td>Perro</td>
+        <td>Cerdo</td>
+        <td>Rata</td>
+        <td>Buey</td>
+        <td>Tigre</td>
+        <td>Conejo</td>
+        <td>Dragón</td>
+        <td>Serpiente</td>
+        <td>Caballo</td>
+        <td>Cabra</td>
+      </tr>
+    </table>
+    <p><strong>Aplicar todo lo que ya sabéis</strong>: validación por formulario, funciones flecha y escuchadores de evento.</p>
+    <p>El programa deberá indicar el signo chino en letras e imagen. ( <em>Ver captura</em> )</p>
+    <figure>
+      <img class="w-5/6" src="./img/horoscopo-chino.png" alt="pantalla de ejemplo">
+    </figure>
+  </details>
+
+
 </body>
+
 </html>
