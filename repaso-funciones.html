@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+  </script>
+
+  <style type="text/tailwindcss">
+    @import "tailwindcss"; 
+
+    @layer base {
+      :root {
+        @apply text-sm;
+        line-height: 1.5;
+      }
+
+      p {
+        @apply mb-1
+      }
+
+      button {
+        @apply rounded-md bg-slate-200 border-1 border-slate-400 px-4 py-1 my-1 text-sm cursor-pointer disabled:opacity-50
+      }
+      details {
+        @apply mb-4 py-2 border-b-slate-700 border-b-1 text-slate-800 
+      }
+      summary {
+        @apply py-1 text-base bg-slate-800 text-white font-bold
+      }
+      blockquote {
+        @apply mx-8 p-2 bg-slate-200
+      }
+
+      ol {
+        @apply list-decimal list-outside ml-6 mb-4
+      }
+
+      ul {
+        @apply list-[circle] list-outside ml-6 mb-4
+      }
+      
+      kbd, code, a {
+        @apply text-blue-800
+      }
+
+      a {
+        @apply border-b-1 
+      }
+
+      input, select {
+        @apply border-1 px-2
+      }
+
+      hr {
+        @apply my-3
+      }
+
+      em {
+        @apply font-mono text-sky-600
+      }
+
+    }
+  </style>
+
+  <link rel="shortcut icon" href="./img/function.svg" type="image/svg">
+  <title>Funciones</title>
+</head>
+
+<body class="container mx-auto w-5/6">
+  <h1 class="font-bold text-2xl text-red-700 mb-4">
+    Repaso Funciones 
+  </h1>
+  <p class="font-bold bg-amber-100">(de ahora en adelante se deben utilizar escuchadores y funciones flecha)</p>
+  <p>Hacer un dashboard que permita ir a cualquiera de los siguientes ejercicios.</p>
+  <p>Validar los datos de entrada desde un formulario HTML</p>
+  <ol>  
+    <li>Programa una función que cuente el número de caracteres de una cadena de texto, <em>pe. miFunción("Hola Mundo") devolverá 10</em></li>
+    <li>Programa una función que te devuelva el texto recortado según el número de caracteres indicados, <em>pe. miFunción("Hola Mundo", 4) devolverá "Hola"</em></li>
+    <li>Programa una función que dada una String te devuelva un Array de textos separados por cierto caracter, <em>pe.
+     miFuncion('hola que tal', ' ') devolverá ['hola', 'que', 'tal']</em></li>
+    <li>Programa una función que repita un texto X veces, <em>pe. miFuncion('Hola Mundo', 3) devolverá Hola Mundo Hola Mundo Hola Mundo</em></li>
+    <li>Programa una función que invierta las palabras de una cadena de texto, <em>pe. miFuncion("Hola Mundo") devolverá "odnuM aloH"</em></li>
+    <li>Programa una función para contar el número de veces que se repite una palabra en un texto largo,<em> pe. miFuncion("hola mundo adios mundo", "mundo") devolverá 2</em></li>
+    <li>Programa una función que valide si una palabra o frase dada, es un palíndromo (que se lee igual en un sentido que en otro), <em>pe. mifuncion("Salas") devolverá true</em></li>
+    <li>Programa una función que elimine cierto patrón de caracteres de un texto dado, <em>pe. miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5</em></li>
+    <li>Programa una función que obtenga un numero aleatorio entre 501 y 600. ver el siguiente <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math/random" target="_blank" rel="noopener noreferrer">enlace</a></li>
+    <li>Programa una función para convertir grados Celsius a Fahrenheit y viceversa, <em>pe. miFuncion(0,"C") devolverá 32°F</em></li>
+    <li>Programa una función para <a target="_blank" href="https://www.q2bstudio.com/nuestro-blog/275027/convierte-facilmente-entre-numeros-binarios-y-decimales-utilizando-javascript-aprende-como-hacerlo" rel="noopener">convertir números de base binaria a decimal</a> y viceversa, <em>pe. miFuncion(100,2) devolverá 4 base 10</em></li>
+    <li>Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, <em>pe. miFuncion(new Date(1984,4,23)) devolverá 41 años (en 2026). </em><a  target="_blank" href="https://agustinmulet.dev/posts/calcular-edad-con-javascript/" rel="noopener">Objeto fecha</a></li>
+    <li>Programa una función que dada una cadena de texto cuente el número de vocales y consonantes, <em>pe. miFuncion("Hola Mundo") devuelva Vocales: 4, Consonantes: 5</em></li>
+    <li>Programa una función que valide que un texto sea un nombre válido, entendiéndose por valido que tenga sólo letras y apóstrofes, <em>pe. miFuncion("Anita de la Rosa D'Onoffrio ") devolverá verdadero</em></li>
+    <li>Programa una función que valide que un texto sea un email válido, <em>pe. miFuncion("pato_lucas@outlook.es") devolverá verdadero</em></li>
+    <li>Programa una función que dado un array numérico devuelve otro array con los números elevados al cuadrado, <em>pe. mi_funcion([1, 4, 5]) devolverá [1, 16, 25]</em></li>
+    <li>Programa una función que dado un array devuelva el número mas alto y el más bajo de dicho array, <em>pe. miFuncion([1, 4, 5, 99, -60]) devolverá [99, -60]</em></li>
+    <li>Programa una función que dado un array de números devuelva un objeto con 2 arreglos en el primero almacena los números pares y en el segundo los impares, <em>pe. miFuncion([1,2,3,4,5,6,7,8,9,0]) devolverá {pares: [2,4,6,8,0], impares: [1,3,5,7,9]}</em></li>
+    <li>Programa una función que dado un arreglo de números devuelva un objeto con dos arreglos, el primero tendrá los numeros ordenados en forma ascendente y el segundo de forma descendiente, <em>pe. miFuncion([7, 5,7,8,6]) devolverá { asc: [5,6,7,7,8], desc: [8,7,7,6,5] }</em></li>
+    <li>Programa una función que dado un arreglo de elementos, elimine los duplicados, <em>pe. miFuncion(["x", 10, "x", 2, "10", 10, true, true]) devolverá ["x", 10, 2, "10", true]</em></li>
+    <li>Programa una función que dado un arreglo de números obtenga el promedio, <em>pe. promedio([9,8,7,6,5,4,3,2,1,0]) devolverá 4.5</em></li>
+  </ol>
+  <h2 class="font-bold text-xl">Consideraciones</h2>
+  <ul>
+    <li>La función a programar deberá recibir los valores por parámetro</li>
+    <li>Devolver se debe interpretar como <code>return</code></li>
+    <li>Lógica del programa: La función <code>main</code> lee y valida los datos, se los pasa a la función correspondiente, que deberá generar un resultado y devolverlo usando <code>return</code>. Una vez la función <code>main</code> reciba el resultado (en una variable), la muestra por pantalla.</li>
+  </ul>
+</body>
+</html>
