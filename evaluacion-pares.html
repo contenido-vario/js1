@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+    <style type="text/tailwindcss">
+        @import "tailwindcss"; 
+
+        @layer base {
+        :root {
+            @apply text-sm;
+            line-height: 1.5;
+        }
+
+        h1, h2, h3, p { @apply mb-4}
+        li { @apply mb-2}
+
+        button {
+            @apply rounded-md bg-slate-200 border-1 border-slate-400 px-4 py-1 my-1 text-sm cursor-pointer disabled:opacity-50
+        }
+
+        details { @apply mb-4 py-2 border-b-slate-700 border-b-1 text-slate-800 }
+        summary { @apply py-1 text-base bg-slate-800 text-white font-bold }
+        blockquote { @apply mx-4 mb-4 p-2 bg-slate-100 }
+
+        ol { @apply list-decimal list-outside ml-6 mb-4 }
+
+        ul { @apply list-[circle] list-outside ml-8 mb-4 }
+        
+        kbd, code, a { @apply text-blue-600 bg-blue-50 }
+
+        var { @apply text-pink-600 font-mono }
+
+        hr { @apply my-3 }
+
+        img { @apply inline w-6 }
+        }
+    </style>
+
+    <link rel="shortcut icon" href="./img/check.svg" type="image/svg">
+    <title>Evaluación por Pares</title>
+
+    <script type="module">
+      const integrantes = [
+        {integrante: 'Aya', repositorio: 'https://github.com/ayaelo9'},
+        {integrante: 'Cristian', repositorio: 'https://github.com/xiles5'},
+        {integrante: 'Cyrille', repositorio: 'https://github.com/cyrille514'},
+        {integrante: 'David', repositorio: 'https://github.com/dayvip369'},
+        {integrante: 'Guillermo', repositorio: 'https://github.com/codeguille98'},
+        {integrante: 'Jenifer', repositorio: 'https://github.com/jenifer-al'}, 
+        {integrante: 'Joelle', repositorio: 'https://github.com/moussijoelle'}, 
+        {integrante: 'Maximiliam', repositorio: 'https://github.com/mx-2-d'},
+        {integrante: 'Mohammed', repositorio: 'https://github.com/MohammedZakhbat'},
+        {integrante: 'Naomi', repositorio: 'https://github.com/naomiquitosalazar-cyber'},
+        {integrante: 'Natalia', repositorio: 'https://github.com/nataliya-stack'},
+        {integrante: 'Yolanda', repositorio: 'https://github.com/fontanillus'},
+        {integrante: 'Yordano', repositorio: 'https://github.com/yordano108'}
+      ]
+      const ALUMNOS = document.getElementById('alumnos')
+      const lista = document.createElement("ul");
+
+      for (const { integrante, repositorio }  of integrantes) {
+        const item = document.createElement("li");
+        item.innerHTML = `<a href="${repositorio}" target="_blank" rel="noopener noreferrer"><img src="./img/github.png" alt="repositorio ${integrante}" title="repositorio ${integrante}"></a> ${integrante}`;
+        lista.appendChild(item);
+      } 
+      ALUMNOS.appendChild(lista);
+    </script>
+</head>
+<body class="container w-4/5 mx-auto">
+    
+    <h1 class="text-2xl font-bold text-sky-500">Evaluación por pares</h1>
+    <p>Hacer un programa que permita asignar a cada integrante de la clase, un compañero al cual se le deberá revisar el <strong>Dashboard de repaso de funciones</strong>.</p>
+    <p>El programa deberá:</p>
+    <p>&#9312; Crear una clase (denominada <code>Evaluadores</code>) que tendrá los siguientes atributos:</p>
+    <ul>
+      <li><code>revisor</code></li>
+      <li><code>revisado</code></li>
+      <li><code>repositorio</code></li>
+    </ul>
+    <p>&#9313; Llenar un array de objetos que se denominará <code>revisiones</code> el cual se guardará todos los integrantes del array <code>integrantes</code>, (el nombre del integrante se guardará en el atributo <code>revisor</code>).</p>
+    <p>&#9314; Recorrer el array <code>revisiones</code> para llenar el atributo <code>revisado</code> y <code>repositorio</code> de cada objeto del array, de la siguiente manera:</p>
+    <ul>
+      <li>Generar un números aleatorios entre 1 y el número de integrantes del array <code>integrantes</code>.<br>
+        Este número corresponderá al integrante revisado.</li> 
+      <li>Deberá cuidarse que el revisor y el revisado no sean la misma persona y que una persona sea revisada una sola vez por otro integrante.</li>
+    </ul>
+    <details open>
+      <summary>Integrantes</summary>
+      <div id="alumnos">
+      </div>
+    </details>
+</body>
+</html>
