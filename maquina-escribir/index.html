@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maquina de Escribir</title>
+  <style>
+    body {
+      width: 95%;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    #text-screen {
+      margin-top: 5em;
+      width: 90%;
+      min-height: 40vh;
+      margin: 0 auto;
+      border: 1px solid blue;
+      color: blue;
+    }
+
+    #pantalla {
+      /* Esto obliga al navegador a respetar todos los espacios y saltos de línea */
+      white-space: pre-wrap; 
+    }
+    .tecla {
+      padding: 5px;
+      margin: 5px;
+      font-size: large;
+    }
+
+  </style>
+</head>
+
+<body>
+  <h1>Escribe con los botones</h1>
+  <section id="text-screen">
+    <p id="pantalla" title="ME LLAMO PANTALLA">
+  </section>
+
+  <section id="maquina">  
+
+  </section>
+<script>
+    // 1. Mapeamos HTML
+    const PANTALLA = document.getElementById('pantalla');
+    const TECLADO = document.getElementById('maquina');
+
+    // 2. Objeto para convertir el valor de las teclas en caso de que se use el Shift
+    const TRADUCTOR_SHIFT = {
+      '-': '_',  // Si presiona el guion con Shift, se vuelve guion bajo
+      '.': ':',  // Si presiona punto con Shift, se vuelve dos puntos
+      ',': ';'   // Si presiona coma con Shift, se vuelve punto y coma
+    };
+
+    // 3. Versión reducida de lo que se hace en un teclado
+    const verificarBoton = (valor) => {
+      console.log('Valor a mostrar en pantalla', valor);
+      if (valor === "Backspace") {
+        // Borrar el último carácter si es la flecha
+        PANTALLA.innerText = PANTALLA.innerText.slice(0, -1);
+      } else {
+        // Añadir la letra presionada
+        PANTALLA.innerText += valor;
+      }
+    };
+
+    // 4. Las funciones que manejan un evento (se conocen como funciones Handler)
+    //    Aprovechamos el BURBUJEO (event bubbling) 
+
+    const clickHandler = (evento) => {
+      // IMPORTANTE: Como escuchamos en el contenedor padre, 
+      // primero nos aseguramos de que hicieron click en un BOTÓN y no en el fondo.
+      if (evento.target.tagName === 'BUTTON') {
+        const valorTecla = evento.target.value; 
+        console.log("Tecla desde clickHandler:", valorTecla);
+        verificarBoton(valorTecla);
+      }
+    };
+
+    const keydownHandler = (evento) => {
+      let tecla = evento.key;
+      const ES_LETRA = /^[a-zA-ZñÑ]$/.test(tecla);
+      let valorTecla = '';
+
+      // Agrupamos todas las teclas que nuestra máquina acepta
+      const ES_TECLA_VALIDA = 
+        tecla === "Backspace" || 
+        tecla === " " || 
+        ES_LETRA || 
+        ['.', ',', '-', '_', ':', ';'].includes(tecla);
+
+      // Si es una tecla válida, la bloqueamos para el navegador una sola vez aquí
+      if (ES_TECLA_VALIDA) {
+        evento.preventDefault(); //Evita que la página haga scroll hacia abajo
+      }
+
+      // En un switch, las condiciones se evalúan 
+      // de arriba a abajo y la primera que sea verdadera gana.
+      // switch permite evaluar el valor de una variable switch(variable)
+      // o varias condiciones switch (true)
+      // El Break: En cuanto JavaScript encuentra el primer case 
+      // que sea verdadero (true), ejecutará su código, 
+      // pero seguirá ejecutando los códigos de los siguientes case hacia abajo, 
+      // sin importar si sus condiciones son verdaderas o falsas, 
+      // hasta que encuentre un break o termine el switch.
+
+      switch (true) {
+        // Ponemos el Shift PRIMERO para que intercepte los signos especiales antes
+        case (tecla === " "): 
+          valorTecla = " "; break;
+
+        case (evento.shiftKey && TRADUCTOR_SHIFT[tecla]):
+          valorTecla = TRADUCTOR_SHIFT[tecla]; break;
+
+        case (tecla === "Backspace"):
+          valorTecla = "Backspace"; break;
+
+
+        // Si no tenía Shift, entonces sí evaluamos si es una letra o signo normal
+        case (ES_LETRA || ['.', ',', '-', '_', ':', ';'].includes(tecla)):
+          valorTecla = tecla; break;
+          
+        default:
+          // Si se presionan F5, Enter, Alt, etc., caen aquí.
+          // NO hacemos preventDefault, permitiendo que el navegador funcione normal.
+          break;
+      }
+
+      console.log("Tecla desde keydownHandler:", valorTecla);
+      // Solo enviamos a verificar si realmente capturamos una tecla válida
+
+      if (valorTecla !== '') {
+        verificarBoton(valorTecla);
+      }
+    };
+
+    // 4. Creamos la interfaz (el teclado)
+    const iniciar = () =>  {
+      // Usamos '\u232B' que equivale al símbolo de la tecla borrar (⌫)
+      const LETRAS = [
+        'Q','W','E','R','T','Y','U','I','O','P', 
+        { valor: 'Backspace', texto: '⌫' }, // Símbolo limpio para el usuario
+        'A','S','D','F','G','H','J','K','L','Ñ',
+        'Z','X','C','V','B','N','M',',','.','-'
+      ];
+      // const LETRAS = 'QWERTYUIOP\u232BASDFGHJKLÑZXCVBNM,.-';
+      
+      for (let i = 0; i < LETRAS.length; i++) {
+        // Creamos un botón en memoria y le asignamos sus características         
+        const boton = document.createElement('button');
+        boton.type = 'button';
+        boton.classList.add('tecla');
+        if (typeof LETRAS[i] === 'string') {
+          boton.value = LETRAS[i];             // valor lógico: 'Q', 'W', etc.
+          boton.textContent = LETRAS[i];
+        } else {
+          boton.value = LETRAS[i].valor;       // valor lógico: 'backspace'
+          boton.textContent = LETRAS[i].texto; // texto visual: ⌫
+        } 
+        TECLADO.appendChild(boton);
+        // Este if es para que el teclado parezca un teclado real 
+        // Faltan los números, lo pulís vosotros...
+        // (Lo tenía hecho para un juego del ahorcado)
+        if (boton.value === "Backspace" || boton.value === "Ñ" || boton.value === "-") {
+          TECLADO.appendChild(document.createElement('br'));
+        }  
+      }        
+
+      // Aprovechamos el burbujeo: event bubbling
+      // Y usamos un solo listener para controlar a todos       
+      TECLADO.addEventListener('click', clickHandler);
+      document.addEventListener('keydown', keydownHandler);
+    }
+
+    iniciar();
+  </script>
+</body>
+
+</html>
