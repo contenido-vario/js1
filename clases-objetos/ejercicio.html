@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD-Edificios</title>
+  <style>
+    body {
+      width: 80%;
+      margin: 0 auto;
+      padding-bottom: 3rem;
+      font-family: "Inclusive Sans", ui-sans-serif, system-ui, sans-serif;
+    }
+    code {
+      color: darkred;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Ejercicio CRUD - Edificios (sin herencia)</h1>
+  <p>Crear una aplicación que permita gestionar la limpieza de los edificios de una empresa de Servicios Varios.</p>
+
+  <p>La aplicación contendrá una <strong>clase Edificio</strong> con los siguientes datos: <strong>nombre, número de plantas y
+    superficie&nbsp;(m²)</strong> que se darán al crear el edificio. Una vez creado el edificio, el único atributo que se puede
+    modificar es la superficie del mismo. El resto se puede acceder sólo para leerlos.</p>
+
+  <blockquote>
+    <ul>
+      <li><strong>Al crear un objeto (<code>new Class</code>)</strong>: Se pueden pasar tantos datos como requiera el constructor, sin importar si van a terminar en variables públicas o privadas.</li>
+      <li><strong>Una vez creado el objeto</strong>: El programa ya pierde el acceso directo a los atributos privados (#). A partir de este momento, solo la propia clase puede leerlos o modificarlos.</li>
+    </ul>
+  </blockquote>
+
+  <p>La clase tendrá un <strong>método</strong> <code>limpiar()</code> en la clase pertinente, el cual mostrará por pantalla el tiempo
+    que se ha tardado en limpiar el edificio, teniendo en cuenta que se tarda en limpiar un minuto por cada 5 m².</p>
+
+  <p>Además, si un edificio tiene más de una planta, se tarda en subir medio minuto de una planta a otra. Por lo tanto, añadiremos medio minuto por cada planta adicional. Por cada minuto de trabajo se pagará un euro diario. Tener en cuenta que, como se limpia cada día, para obtener el coste mensual, tendremos que multiplicar por 30 (este coste mensual también se deberá mostrar por pantalla al ver los datos de un edificio).</p>
+
+  <p><strong>La aplicación deberá ser capaz de</strong>: agregar, modificar la superficie, eliminar y devolver los datos de un edificio, además de imprimir la lista de todos los edificios gestionados. También se deberá poder conocer el estimado en coste
+  mensual, por concepto de limpieza, de todos los edificios.</p>
+
+  <p><strong>Truco:</strong> Llenad con unos 3-4 datos de prueba el array de <strong>edificios</strong> para probar el programa más cómodamente</p>
+
+</body>
+
+</html>
