@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS-setTimeout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&display=swap"
+    rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+  </script>
+
+  <style type="text/tailwindcss">
+    @import "tailwindcss"; 
+    /* Esto carga todo el framework */
+
+    /* Variables de configuración */
+    @theme {
+      --font-sans: "Inclusive Sans", ui-sans-serif, system-ui, sans-serif;
+      --color-brand: #ff4500;
+    }
+
+    @layer base {
+      :root {
+        @apply text-sm;
+        line-height: 1.5;
+      }
+
+      p {
+        @apply mb-1
+      }
+
+      button {
+        @apply rounded-md bg-slate-200 border-1 border-slate-400 px-4 py-1 my-1 text-sm cursor-pointer disabled:opacity-50
+      }
+      details {
+        @apply mb-4 py-2 border-b-slate-700 border-b-1 text-slate-800 
+      }
+      summary {
+        @apply py-1 text-base bg-slate-800 text-white font-bold
+      }
+      blockquote {
+        @apply mx-8 p-2 bg-slate-200
+      }
+
+      ol {
+        @apply list-decimal list-outside ml-6 mb-4
+      }
+
+      ul {
+        @apply list-[circle] list-outside ml-6 mb-4
+      }
+      
+      kbd, code, a {
+        @apply text-blue-800
+      }
+
+      a {
+        @apply border-b-1 
+      }
+
+      input, select {
+        @apply border-1 px-2
+      }
+
+      hr {
+        @apply my-3
+      }
+    }
+  </style>
+
+  <link rel="shortcut icon" href="bucles.svg" type="image/svg">
+</head>
+
+<body class="container mx-auto w-full p-4 pb-10">
+<h1 class="font-bold text-2xl text-red-700 mb-4">Temporizador setTimeout</h1>
+<p class="text-xl">
+<div class="flex flex-col md:flex-row gap-4">
+  <div class="flex-1 p-4">
+    <p class="mb-3">La función <code>setTimeout</code> permite ejecutar una función o un bloque de código después de que haya transcurrido un periodo de tiempo específico. En términos sencillos, funciona como un temporizador o una alarma: le dices qué quieres que haga y cuánto tiempo debe esperar antes de hacerlo.</p> 
+
+    <h2 class="mb-3 underline text-lg text-sky-700">Sintaxis:</h2>
+    <blockquote class="mb-6">
+        <code>let planificado = <b>setTimeout</b>(funcionAEjecutar, milisegundos);</code>
+    </blockquote>    
+    <p class="mb-3">Cada 1000ms equivale a 1 segundo.</p>
+
+    <h3 class="mb-3 text-red-700">Detener el temporizador</h3>
+    <p class="mb-3">La variable a la cual se asigna el temporizador, guardará un número entero único (un ID). Este identificador es muy importante porque sirve como una "referencia" del temporizador que acabas de programar.
+    Mucha gente utiliza el <code>setTimeout</code> de forma anónima, como en el ejemplo del juego de memoria, pero si guardas este ID en una variable, podrás usarlo posteriormente para cancelar el temporizador antes de que se ejecute.</p>
+
+    <h3 class="mb-3 text-red-700">¿Cómo cancelar el temporizador?</h3>
+    <p class="mb-3">Para frenarlo, usamos la instrucción <code>clearTimeout</code>.</p>
+    <blockquote class="mb-3">
+      <code><b>clearTimeout</b>(variable_que_guarda_el_temporizador);</code>
+    </blockquote>  
+    <p class="mb-3">A tener en cuenta:</p>
+    <ol>
+      <li>El tiempo que se especifica en <code>setTimeout</code> no es un tiempo garantizado de ejecución, sino un tiempo mínimo de espera. En conseciencia, si se configuras un retraso de 3000 milisegundos (3 segundos), pero el procesador está muy ocupado realizando un cálculo pesado en el segundo 3, tu función podría tardar 3.5 o 4 segundos en ejecutarse.</li>
+      <li><b>Identificador único:</b> Siempre que creas un <code>setTimeout</code>, la función crea un identificador interno. Es por esto que se guarda en una variable: para poder detenerlo en cualquier momento antes de su ejecución, con <code>clearTimeout</code>.</li>
+    </ol>
+    <h2 class="mb-3 underline text-lg text-sky-700">Ejemplo: Juego de Memoria</h2>
+    <script src="https://gist.github.com/contenido-vario/4e9696216e56a52bc94882c1f6f43d9a.js"></script>
+</body>
+</html>
