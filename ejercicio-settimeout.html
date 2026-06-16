@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio setTimeout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&display=swap"
+    rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+  </script>
+
+  <style type="text/tailwindcss">
+    @import "tailwindcss"; 
+    /* Esto carga todo el framework */
+
+    /* Variables de configuración */
+    @theme {
+      --font-sans: "Inclusive Sans", ui-sans-serif, system-ui, sans-serif;
+      --color-brand: #ff4500;
+    }
+
+    @layer base {
+      :root {
+        @apply text-sm;
+        line-height: 1.5;
+      }
+
+      p {
+        @apply mb-1
+      }
+
+      button {
+        @apply rounded-md bg-slate-200 border-1 border-slate-400 px-4 py-1 my-1 text-sm cursor-pointer disabled:opacity-50
+      }
+      details {
+        @apply mb-4 py-2 border-b-slate-700 border-b-1 text-slate-800 
+      }
+      summary {
+        @apply py-1 text-base bg-slate-800 text-white font-bold
+      }
+      blockquote {
+        @apply mx-8 p-2 bg-slate-200
+      }
+
+      ol {
+        @apply list-decimal list-outside ml-6 mb-4
+      }
+
+      ul {
+        @apply list-[circle] list-outside ml-6 mb-4
+      }
+      
+      kbd, code, a {
+        @apply text-blue-800
+      }
+
+      a {
+        @apply border-b-1 
+      }
+
+      input, select {
+        @apply border-1 px-2
+      }
+
+      hr {
+        @apply my-3
+      }
+    }
+  </style>
+
+<link rel="shortcut icon" href="bucles.svg" type="image/svg">
+</head>
+
+<body class="container mx-auto w-full p-4 pb-10">
+<h1 class="font-bold text-2xl text-red-700 mb-4">Ejercicio setTimeout</h1>
+<p class="text-xl">
+<div class="flex flex-col md:flex-row gap-4">
+  <div class="flex-1 p-4">
+    <p class="mb-3">¿Recuerdas cómo traer un texto aleatorio de un array de palabras?</p> 
+    <p class="mb-3">Lo puedes revisar en el ejercicio de <a href="https://contenido-vario.github.io/js1/array/galletitas.html" target="_blank" rel="noopener noreferrer">Galletitas de la Fortuna</a></p> 
+    <p class="mb-3">Haciendo uso del ejemplo de la explicación del <a href="settimeout.html" target="_blank" rel="noopener noreferrer"><code>setTimeout</code></a> y sabiendo que puedes traer una palabra random de un array de palabras, haz un juego de memoria usando palabras en vez de números.</p> 
+</body>
+</html>
