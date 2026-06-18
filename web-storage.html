@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&display=swap"
+    rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+  </script>
+
+  <style type="text/tailwindcss">
+    @import "tailwindcss"; 
+    /* Esto carga todo el framework */
+
+    /* Variables de configuración */
+    @theme {
+      --font-sans: "Inclusive Sans", ui-sans-serif, system-ui, sans-serif;
+      --color-brand: #ff4500;
+    }
+
+    @layer base {
+      :root {
+        @apply text-sm;
+        line-height: 1.5;
+      }
+
+      h2 {@apply font-bold text-2xl my-4 }
+      h3 {@apply font-bold text-xl my-4 }
+      h4 {@apply text-xl text-red-700 my-3 }
+      h5 {@apply text-lg text-red-700 my-3 }
+
+      p {
+        @apply mb-1
+      }
+
+      button {
+        @apply rounded-md bg-slate-200 border-1 border-slate-400 px-4 py-1 my-1 text-sm cursor-pointer disabled:opacity-50
+      }
+      details {
+        @apply mb-4 py-2 border-b-slate-700 border-b-1 text-slate-800 
+      }
+      summary {
+        @apply py-1 text-base bg-slate-800 text-white font-bold
+      }
+      blockquote { @apply mx-8 p-2 text-sm font-mono }
+
+      ol {
+        @apply list-decimal list-outside ml-6 mb-4
+      }
+
+      ul {
+        @apply list-[circle] list-outside ml-6 mb-4
+      }
+      
+      kbd, code, a {
+        @apply text-blue-800
+      }
+
+      a {
+        @apply border-b-1 
+      }
+
+      input, select {
+        @apply border-1 px-2
+      }
+
+      hr {
+        @apply my-3
+      }
+    }
+  </style>
+
+  <link rel="shortcut icon" href="bucles.svg" type="image/svg">
+  <title>Web Storage</title>
+</head>
+
+<body class="container mx-auto w-5/6 pb-10">
+  <header id="title-block-header">
+    <h1 class="font-bold text-2xl text-red-700 mb-4">Local Storage - Session Storage</h1>
+  </header>
+  <p>Ambas herramientas permiten guardar información en el navegador.
+    Antes de tocar una sola línea de código debemos recordar que tanto
+    <strong><code>LocalStorage</code></strong> como
+    <strong><code>SessionStorage</code> SOLO pueden almacenar texto plano
+    (strings)</strong> usando pares de <code>clave: valor</code>. No
+    entienden de objetos, ni de arrays, ni de números; para ellas, todo en
+    la vida es un texto. ## Los 5 Métodos de Local Storage y Session
+    Storage
+  </p>
+  <p>Tanto <code>localStorage</code> como <code>sessionStorage</code>
+    (reunidas bajo el nombre de <em>Web Storage API</em>) <strong>comparten
+      exactamente los mismos métodos</strong>. Con lo cual, si se aprende a
+    usar una, automáticamente se sabes usar la otra. Lo único que cambia es
+    el nombre del objeto global (<code>localStorage</code> o
+    <code>sessionStorage</code>). Los 5 métodos son:</p>
+
+   <h3>1. Guardar datos: <code>.setItem(clave, valor)</code></h3>
+  
+  <p>Sirve para meter un dato en el <code>localStorage</code> o
+    <code>sessionStorage</code>. Si la “clave” ya existe, <strong>se
+      sobrescribe el valor anterior</strong>.
+  </p>
+
+  <blockquote>
+    <script src="https://gist.github.com/contenido-vario/03ea793243f561d47ca1438d72567da9.js?file=setItem.js"></script> 
+  </blockquote>
+
+  <h3>2. Leer datos: <code>.getItem(clave)</code></h3>
+  <p>Pasamos el nombre de la clave que se busca y devuelve su valor en
+    texto. Si no se encuentra la clave, devuelve <code>null</code>.</p>
+
+  <blockquote>
+    <script src="https://gist.github.com/contenido-vario/03ea793243f561d47ca1438d72567da9.js?file=getItem.js"></script>
+  </blockquote>
+
+    <h3>3. Borrar un dato específico: <code>.removeItem(clave)</code></h3>
+  <p>Si ya no se necesita un dato en concreto, se destruye pasándole su
+    clave.</p>
+  
+    <blockquote>
+      <script src="https://gist.github.com/contenido-vario/03ea793243f561d47ca1438d72567da9.js?file=removeItem.js"></script>
+    </blockquote>
+
+  <h3>4. Borrar todos los datos: <code>.clear()</code></h3>
+  <p>El método <code>.clear()</code> elimina <strong>absolutamente
+      todo</strong> lo que el navegador haya guardado desde un dominio en ese
+    almacenamiento.</p>
+    <blockquote>
+    <script src="https://gist.github.com/contenido-vario/03ea793243f561d47ca1438d72567da9.js?file=clear.js"></script> 
+    </blockquote>
+  <h3>5. Saber cuántos datos hay guardados: <code>.length</code></h3>
+  <p>En realidad es una <code>propiedad</code>, no un método (no lleva
+    paréntesis). Informa cuántas claves se tienen guardadas en un momento
+    dado.</p>
+    <blockquote>
+    <script src="https://gist.github.com/contenido-vario/03ea793243f561d47ca1438d72567da9.js?file=localStorage-length.js"></script> 
+    </blockquote>
+    <br>
+  
+  <p>Hay un detalle técnico de <code>SessionStorage</code> que hay que tomar en cuenta: <strong>si el usuario refresca la página (F5), los datos NO se borran</strong>.</p>
+    
+  <h2>¿Cómo guardamos arrays u objetos si solo se acepta texto?</h2>
+  <p>Si se intenta guardar una variable compuesta (array u objeto)
+    directamente a <code>SessionStorage</code> o <code>LocalStorage</code>,
+    pasará esto:</p>
+
+    <blockquote>
+    <script src="https://gist.github.com/contenido-vario/03ea793243f561d47ca1438d72567da9.js?file=arrays-objetos.js"></script> 
+    </blockquote>
+    
+  <p>Se utilizan dos métodos JSON nativos de JavaScript: <code>JSON.stringify()</code> y <code>JSON.parse()</code>.
+  </p>
+  <ul>
+    <li><strong>Para guardar (Serializar):</strong> Se utiliza
+      <code>JSON.stringify(array u objeto)</code>. Este método transforma
+      mágicamente un objeto o array en una cadena de texto plana.
+    </li>
+    <li><strong>Para leer (Des-serializar):</strong> Se utiliza
+      <code>JSON.parse(texto)</code>. Esto toma el texto plano y lo transforma
+      de vuelta en un array u objeto literal de JavaScript.
+    </li>
+  </ul>
+  <h3>Ejemplo:</h3>
+
+    <blockquote>
+    <script src="https://gist.github.com/contenido-vario/03ea793243f561d47ca1438d72567da9.js?file=metodos-json.js"></script> 
+    </blockquote>
+
+  <hr>
+  <h4>Ejemplo 1: Session Storage y arrays</h4>
+  <p>Tenemos un array de canciones favoritas:</p>
+
+    <blockquote>
+    <script src="https://gist.github.com/contenido-vario/03ea793243f561d47ca1438d72567da9.js?file=canciones.js"></script> 
+    </blockquote>  
+  
+  <p>¿Cómo escribiríamos el código para <strong>guardar</strong> ese array
+    en el <code>sessionStorage</code> bajo la clave
+    <code>&quot;lista_reproduccion&quot;</code>, y luego cómo lo
+    <strong>leeríamos</strong> de vuelta en una nueva variable para hacerle
+    un <code>console.log()</code> al segundo elemento del array
+    (<code>&quot;Billie Jean&quot;</code>)?
+  </p>
+
+  <h5>Respuesta</h5>
+
+  <blockquote>
+    <script src="https://gist.github.com/contenido-vario/03ea793243f561d47ca1438d72567da9.js?file=reto-canciones.js"></script> 
+  </blockquote>  
+ 
+  <hr>
+  <h4>Ejemplo 2: Cambiar tema Tailwind CSS (Modo Oscuro/Claro) con <code>LocalStorage</code></h4>
+  <p>Si un usuario entra a tu web y prefiere leerla con el fondo oscuro,
+    esa es una preferencia personal a largo plazo. Sería extremadamente
+    molesto para el usuario que, cada vez que cierra la pestaña y vuelve a
+    entrar al día siguiente, la web aparezca en blanco brillante y tenga que
+    volver a pulsar el botón de “Modo Oscuro”.</p>
+  <p>Al usar <code>LocalStorage</code>, el navegador recuerda esa decisión
+    para siempre (o hasta que el usuario decida cambiarla de nuevo), sin
+    importar si apaga el ordenador o cierra el navegador.</p>
+  <p>Con <strong>Tailwind CSS</strong>, lo que se hace es <strong>añadir o
+      quitar una palabra (una clase llamada <code>dark</code>) en la etiqueta
+      principal <code>&lt;html&gt;</code></strong> de tu página.</p>
+  <p>Tailwind está diseñado para que, si el elemento
+    <code>&lt;html&gt;</code> tiene la clase <code>dark</code>,
+    automáticamente se activen <strong>todos los estilos oscuros que hayas
+      programado</strong> (los que empiezan por <code>dark:</code>).
+  </p>
+  <h5>El Script para cambiar el tema desde Tailwind + LocalStorage</h5>
+  <p>Este pequeño script se coloca normalmente en el
+    <code>&lt;head&gt;</code> del HTML. Su trabajo es “mirar” el
+    LocalStorage antes de que la página se pinte, para evitar el destello blanco que ocurre si el modo oscuro se activa tarde.
+  </p>
+  
+  <blockquote>
+    <script src="https://gist.github.com/contenido-vario/03ea793243f561d47ca1438d72567da9.js?file=tailwind-localstorage.js"></script> 
+  </blockquote>  
+
+  <h5>¿Cómo se programaría el botón de “Cambiar Tema”?</h5>
+
+  <p>Cuando el usuario hace clic en el botón <code>Cambiar Tema</code> para cambiar
+    el tema, tu código de JavaScript tiene que hacer dos cosas a la vez:
+    <strong>cambiar la interfaz</strong> y <strong>guardar la decisión en el
+      LocalStorage</strong>.
+  </p>
+
+  <blockquote>
+    <script src="https://gist.github.com/contenido-vario/03ea793243f561d47ca1438d72567da9.js?file=cambiar-tema.js"></script> 
+  </blockquote> 
+
+  <h5>Entendiendo el funcionamiento del éste script</h5>
+
+  <p>En las etiquetas de Tailwind se escriben ambos tipos de
+    comportamientos o clases de la siguiente manera:
+    <code>class=&quot;bg-white text-black dark:bg-slate-900 dark:text-white&quot;</code>.
+  </p>
+  <p>La función <code>cambiarTema</code> se encarga de aplicar los estilos
+    <code>dark</code> en cuanto se hace clic en el botón
+    <code>botonTema</code> agregando/quitando la clase <code>dark</code> del
+    elemento HTML y guardando el nuevo tema en el
+    <code>LocalStorage</code>.
+  </p>
+  <p>El “secreto” de Tailwind está en cómo funciona <strong>el CSS por
+      dentro</strong> y una cosa llamada <strong>selectores
+      descendientes</strong>.</p>
+  <p>Cuando se agregan las siguientes dos clases a un párrafo
+    <code>class=&quot;text-blue-800 dark:text-yellow-400&quot;</code>, se están dando
+    dos instrucciones visuales distintas a ese mismo párrafo. Tailwind
+    traduce eso a código CSS real que el navegador entiende así:
+  </p>
+
+  <blockquote>
+    <script src="https://gist.github.com/contenido-vario/03ea793243f561d47ca1438d72567da9.js?file=selectores.css"></script> 
+  </blockquote> 
+
+  <p>Estudiemos esta segunda regla de CSS:
+    <code>.dark .dark\:text-yellow-400</code>.
+  </p>
+  <p>La segunda de las dos clases separadas por un espacio, le dicen al
+    navegador: <em>“Aplica este color amarillo <strong>SÓLO si este elemento
+        está dentro de otro elemento que tenga la clase
+        <code>.dark</code></strong>”</em>.</p>
+
+  <h5 id="el-efecto-cascada-del-css">El “Efecto Cascada” del CSS</h5>
+  <p>Si el árbol de HTML es este:</p>
+
+  <blockquote>
+    <script src="https://gist.github.com/contenido-vario/03ea793243f561d47ca1438d72567da9.js?file=arbol.html"></script> 
+  </blockquote> 
+
+  <p>¿Qué hace el navegador cuando va a pintar ese párrafo? Hace un
+    escaneo rápido hacia arriba:</p>
+  <ol>
+    <li>Mira el párrafo y ve que tiene la clase
+      <code>dark:text-yellow-400</code>.<br />
+    </li>
+    <li>El CSS le dice: <em>“Para pintar esto de amarillo, tienes que estar
+        dentro de un padre llamado <code>.dark</code>”</em>.<br />
+    </li>
+    <li>El navegador mira a sus padres (<code>&lt;body&gt;</code>,
+      <code>&lt;html&gt;</code>) y entonces… encuentra que la etiqueta
+      <code>&lt;html&gt;</code> tiene la clase <code>dark</code>.<br />
+    </li>
+    <li>En ese instante, el navegador <strong>sobrescribe</strong> el color
+      azul por defecto y pinta el texto de color amarillo.</li>
+  </ol>
+  <p>Al eliminar la clase <code>dark</code> del <code>&lt;html&gt;</code>,
+    el navegador volverá a escanear, verá que ya no está dentro de un padre
+    <code>.dark</code>, ignorará la regla del amarillo y el párrafo volverá
+    a verse azul instantáneamente.
+  </p>
+  <p>Con Tailwind, solo se escriben, en los elementos HTML, las dos variantes usando el prefijo <code><mark>dark:</mark></code> (por ejemplo: <code>bg-white dark:bg-black</code>).
+  </p>
+  <p>JavaScript solo se encarga de encender o apagar el interruptor
+    general (<code>&lt;html class=&quot;dark&quot;&gt;</code>) basándose en lo que
+    haya leído en el <strong>LocalStorage</strong>. Tailwind y el navegador
+    hacen todo el resto del trabajo en equipo.</p>
+
+  <hr class="py-8">
+
+  <h3 id="ejercicios">Ejercicios</h3>
+  <h4 id="haz-un-test-de-10-preguntas-usando-session-storage">1 - Haz un
+    test de 10 preguntas, usando Session Storage</h4>
+  <p>Test de 10 preguntas <span class="math inline">\(\rightarrow\)</span>
+    <code>SessionStorage</code>
+  </p>
+  <p>Si un usuario está haciendo un test y, por ejemplo, cierra la pestaña
+    a la mitad porque se aburrió o se tuvo que ir, lo más probable es que
+    cuando regrese al día siguiente quiera (o deba) <strong>empezar el test
+      desde cero</strong>.</p>
+  <p>Al usar <code>SessionStorage</code>, te aseguras de que las
+    respuestas parciales se borren automáticamente en cuanto se cierra la
+    pestaña.</p>
+  <p>Además, evita que si otra persona usa el mismo ordenador en ese
+    navegador, se encuentre con las respuestas del usuario anterior ya
+    marcadas.</p>
+  
+  <p>Esto es ideal para un test, porque si el usuario recarga la página
+    por error o porque se le colgó internet un segundo,
+    <code>SessionStorage</code> mantendrá sus respuestas intactas. Solo se
+    destruirán si cierra la pestaña por completo.
+  </p>
+
+
+
+
+</body>
+
+</html>

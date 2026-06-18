@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&display=swap"
+    rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+  </script>
+
+  <style type="text/tailwindcss">
+    @import "tailwindcss"; 
+    /* Esto carga todo el framework */
+
+    /* Variables de configuración */
+    @theme {
+      --font-sans: "Inclusive Sans", ui-sans-serif, system-ui, sans-serif;
+      --color-brand: #ff4500;
+    }
+
+    @layer base {
+      :root {
+        @apply text-sm;
+        line-height: 1.5;
+      }
+      p { @apply mb-1 }
+
+      button {
+        @apply rounded-md bg-slate-200 border-1 border-slate-400 px-4 py-1 my-1 text-sm cursor-pointer disabled:opacity-50
+      }      
+      
+      blockquote {
+        @apply mx-8 p-2 bg-slate-100
+      }
+
+      ol { @apply list-decimal list-outside ml-6 mb-4 }
+
+      ul { @apply list-[circle] list-outside ml-6 mb-4}
+      
+      kbd, code, a { @apply text-blue-800 }
+
+      a { @apply border-b-1 }
+
+      input, select { @apply border-1 px-2 }
+
+      hr { @apply my-3 }
+
+      td, th { @apply border border-b-blue-200 pl-1.5}
+    }
+  </style>
+
+  <link rel="shortcut icon" href="bucles.svg" type="image/svg">
+  <title>Persistencia</title>
+</head>
+
+<body class="container mx-auto w-5/6 pb-10">
+  <header>
+    <h1 class="font-bold text-2xl text-red-700 mb-4">Persistencia en el Navegador</h1>
+  </header>
+  <p>En el mundo de la ingeniería de software, <strong>Persistencia se
+  refiere a la capacidad de los datos de sobrevivir en el tiempo,</strong>
+  incluso si el programa se cierra, el ordenador se apaga o, en este caso,
+  el usuario refresca la página o cierra la pestaña. ## El Gran Mapa de la
+  Persistencia en el Navegador</p>
+  <h3 class="font-bold text-xl mb-4">1. Persistencia Temporal
+    (Session Scope)</h3>
+  <p>Los datos viven estrictamente mientras la pestaña o ventana del
+    navegador esté abierta. Si el usuario recarga la página, los datos se
+    mantienen; pero <strong>si cierra la pestaña o la ventana, los datos se
+      destruyen por completo</strong> inmediatamente. Además, los datos no se
+    comparten entre diferentes pestañas, aunque sea el mismo sitio web.</p>
+  <ul>
+    <li><strong>Herramienta:</strong> <code>SessionStorage</code>.<br />
+    </li>
+    <li><strong>Capacidad:</strong> ~5 MB.</li>
+    <li><strong>Uso común:</strong> Guardar el estado de un formulario largo
+      mientras el usuario navega entre pasos, o el estado de un carrito de
+      compras temporal.</li>
+  </ul>
+  <h3 class="font-bold text-xl mb-4">2. Persistencia
+    Local Semi-Permanente (Local Scope)</h3>
+  <p>Los datos no se borran cuando se cierras la pestaña, el navegador o
+    incluso si se apaga la computadora. Solo desaparecen si el usuario
+    limpia manualmente el historial/caché del navegador o si el código de
+    JavaScript los elimina explícitamente.</p>
+  <ul>
+    <li><strong>Herramienta:</strong> <code>LocalStorage</code>.</li>
+    <li><strong>Capacidad:</strong> ~5 MB a 10 MB.</li>
+    <li><strong>Uso común:</strong> Recordar si el usuario prefiere el modo
+      oscuro o claro, guardar la última canción reproducida o las preferencias
+      de idioma de la interfaz.</li>
+  </ul>
+  <h3 class="font-bold text-xl mb-4">3. Persistencia Masiva (Database Scope)</h3>
+    <p>Es el sistema de almacenamiento más avanzado y potente que incluye el navegador. A diferencia de los anteriores, no guarda texto simple en formato <code>clave: valor</code>, sino que es una completa <strong>base de datos no relacional orientada a objetos</strong> que permite almacenar grandes volúmenes de datos estructurados (archivos, objetos complejos, arreglos). Además, funciona de forma asíncrona para no congelar la interfaz de la página. Está diseñada para aplicaciones web complejas que necesitan funcionar sin internet (Offline) o que manejan miles de registros y archivos pesados.</p>
+
+    <ul>
+      <li><strong>Herramienta:</strong> <code>IndexedDB</code>.<br />
+      </li>
+      <li><strong>Capacidad:</strong> Enorme (desde cientos de megabytes hasta
+        gigabytes, dependiendo del espacio libre en el disco duro del
+        usuario).<br />
+      </li>
+      <li><strong>Uso común:</strong> Aplicaciones de edición de fotos/video
+        online, aplicaciones de notas estructuradas que guardan archivos,
+        videojuegos web que guardan partidas pesadas o aplicaciones web
+        progresivas (PWAs) que funcionan offline.</li>
+    </ul>
+    <p class="mb-4"><strong>IndexedDB</strong> es la joya de la corona dentro de la <em>Persistencia en el Navegador</em>. Es la única que rompe la barrera de los textos simples de pocos megabytes para darte el poder de una base de datos real.
+    </p>
+    <blockquote class="my-3">
+      <p>A diferencia de las cookies, los datos guardados con <strong>Session Storage</strong>, <strong>Local Storage</strong> o <strong>IndexedDB</strong> <strong>nunca se envían al servidor de forma automática</strong> y se manejan puramente a través de JavaScript en el navegador.
+      </p>
+    </blockquote>
+
+    <hr>
+
+  <h3 class="font-bold text-xl mb-4">4. Persistencia en el Navegador vinculada al Servidor (Network Scope)</h3>
+  <p>Este tipo de persistencia se maneja con <strong>cookies</strong> las
+    cuales son el método de almacenamiento más antiguo de la web. Las
+    cookies son pequeños fragmentos de texto que el navegador guarda y, aquí
+    está su característica clave, <strong>se envían automáticamente al
+      servidor en cada petición HTTP</strong> que realizas a ese sitio web.
+    Tienen fecha de caducidad obligatoria.</p>
+  <ul>
+    <li><strong>Herramienta:</strong> Cookies
+      (<code>document.cookie</code>).</li>
+    <li><strong>Capacidad:</strong> Muy limitada (~4 KB).</li>
+    <li><strong>Uso común:</strong> Autenticación y seguridad (saber si has
+      iniciado sesión), seguimiento de usuarios (analíticas) y personalización
+      básica. Debido a que viajan al servidor en cada clic, usarlas para
+      guardar datos grandes ralentiza la web..</li>
+  </ul>
+  <h2 class="text-2xl mb-3 text-center">Tabla Comparativa</h2>
+
+  <table class="w-full text-sm border border-b-blue-200">
+    <thead>
+      <tr>
+        <th width="22%"><strong>Característica</strong></th>
+        <th width="20%"><strong>Cookies</strong></th>
+        <th width="16%"><strong>Local Storage</strong></th>
+        <th width="19%"><strong>Session Storage</strong></th>
+        <th width="22%"><strong>IndexedDB</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Capacidad</strong></td>
+        <td>~4 KB</td>
+        <td>~5 MB</td>
+        <td>~5 MB</td>
+        <td>Casi ilimitada</td>
+      </tr>
+      <tr>
+        <td><strong>Persistencia</strong></td>
+        <td>Configurable (Expira)</td>
+        <td>Permanente</td>
+        <td>Al cerrar la pestaña</td>
+        <td>Permanente</td>
+      </tr>
+      <tr>
+        <td><strong>¿Viaja al Servidor?</strong></td>
+        <td>Sí (En cada petición)</td>
+        <td>No</td>
+        <td>No</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td><strong>Tipo de Datos</strong></td>
+        <td>Solo Texto</td>
+        <td>Solo Texto</td>
+        <td>Solo Texto</td>
+        <td>Objetos, Archivos, etc.</td>
+      </tr>
+      <tr>
+        <td><strong>Complejidad</strong></td>
+        <td>Baja</td>
+        <td>Muy Baja</td>
+        <td>Muy Baja</td>
+        <td>Alta (Asíncrona)</td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+
+</html>
