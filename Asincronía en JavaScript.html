@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&display=swap"
+    rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+  </script>
+
+  <style type="text/tailwindcss">
+    /* Esto carga todo el framework */
+    @import "tailwindcss"; 
+    /* Variables de configuración */
+    @theme {
+      --font-sans: "Inclusive Sans", ui-sans-serif, system-ui, sans-serif;
+      --color-brand: #ff4500;
+    }
+
+    @layer base {
+      :root {
+        @apply text-sm;
+        line-height: 1.5;
+      }
+      p { @apply mb-3 }
+      h2 {@apply font-bold text-2xl my-4 }
+      h3 {@apply font-bold text-xl my-4 }
+      h4 {@apply text-xl text-red-800 my-3 }
+      h5 {@apply text-lg text-red-800 my-3 }
+      button {
+        @apply rounded-md bg-slate-200 border-1 border-slate-400 px-4 py-1 my-1 text-sm cursor-pointer disabled:opacity-50
+      }      
+      blockquote { @apply mx-8 p-2 bg-slate-100 mb-6  }
+      ol { @apply list-decimal list-outside ml-6 mb-4 }
+      ul { @apply list-[circle] list-outside ml-6 mb-4}     
+      kbd, code, a { @apply text-blue-800 }
+      a { @apply border-b-1 }
+      input, select { @apply border-1 px-2 }
+      hr { @apply my-3 }
+      td, th { @apply border border-b-blue-200 pl-1.5}
+      .codigo {@apply font-mono bg-white}
+    }
+  </style>
+
+  <title>AJAX</title>
+</head>
+
+<body class="container mx-auto w-5/6 pb-10 py-8">
+  <header>
+    <h1 class="font-bold text-2xl text-red-800 mb-4">Asincronía en JavaScript</h1>
+  </header>
+  
+  <p>La programación asíncrona es el mecanismo que permite a JavaScript delegar tareas de larga duración (como peticiones a servidores, lectura de archivos o temporizadores) para continuar ejecutando el resto del código sin bloquear la aplicación. Para resolver el desafío de gestionar    estas tareas en un lenguaje de un solo hilo, la comunidad y el propio lenguaje desarrollaron tres soluciones sucesivas: <code>Callbacks</code>, <code>Promesas</code> y  <code>Async</code>/<code>Await</code>.</p>
+
+  <h2>Callbacks, Promesas y Async / Await</h2>
+  <p>Estos tres conceptos son pilares fundamentales para entender cómo se gestiona la asincronía en JavaScript.
+    Representan los tres grandes hitos
+    evolutivos del lenguaje y reflejan cómo han cambiado las soluciones técnicas a lo largo del tiempo.</p>
+
+  <h4>La naturaleza de JavaScript</h4>
+  <p>Javascript es, por definición, un lenguaje síncrono y de un solo hilo: <em>Synchronous and Single-Threaded
+      Languaje</em>.</p>
+  <ul>
+    <li><strong>Síncrono</strong> (<em>Synchronous</em>): significa que el código se ejecuta línea por línea,
+      secuencialmente, de arriba hacia
+      abajo. Cada operación debe completarse antes de que comience la siguiente.</li>
+    <li><strong>De un solo hilo</strong> (<em>Single-Threaded</em>) significa que solo puede ejecutar una tarea a la
+      vez. JavaScript utiliza
+      una única pila de llamadas (<code>Call Stack</code>), por lo que carece de la capacidad nativa de procesar
+      múltiples operaciones simultáneas en
+      paralelo.</li>
+  </ul>
+
+
+  <h3>Al inicio... callbacks</h3>
+  <p>Al principio, JavaScript dependía exclusivamente de los <em>callbacks</em>. Un <em>callback</em> es, sencillamente,
+    una función
+    que se pasa como argumento dentro de otra función, con el objetivo de que se ejecute una vez que la tarea asíncrona
+    haya terminado.</p>
+  <blockquote>
+    <p><strong>El problema principal de los callbacks…</strong> surgió cuando se requería realizar múltiples tareas
+      asíncronas secuenciales
+      (por ejemplo, realizar la petición A, usar su resultado para la petición B, y luego disparar la C), el código
+      comenzaba a anidarse profundamente
+      hacia la derecha..</p>
+    <p><strong>Necesidad de cambio:</strong> Este patrón dio lugar al famoso <strong><em>Callback Hell</em></strong>
+      (Infierno de los
+      Callbacks) o “Pirámide de la Muerte”. El código se volvía sumamente difícil de leer, mantener y, sobre todo,
+      gestionar los errores en cada
+      nivel de anidación. Era una pesadilla propensa a fallos.</p>
+  </blockquote>
+
+  <h3>Promesas (ES6 / 2015)</h3>
+  <p>Para solucionar las deficiencias del <em>callback hell</em>, el estándar ECMAScript 6 introdujo las Promesas
+    (objeto
+    <code>promise</code>). En lugar de pasar funciones “hacia adentro”, una promesa devuelve un objeto que representa un
+    valor que estará disponible
+    en el futuro. Una promesa es, por tanto, un objeto que representa la eventual finalización (o el fracaso) de una
+    operación asíncrona.
+  </p>
+  <p>Una promesa puede transicionar por tres estados:</p>
+  <ol>
+    <li><strong>Pending</strong> (<em>Pendiente</em>): Estado inicial, la operación no ha terminado.</li>
+    <li><strong>Fulfilled</strong> (<em>Resuelta</em>): La operación se completó con éxito.</li>
+    <li><strong>Rejected</strong> (<em>Rechazada</em>): La operación falló.</li>
+  </ol>
+  <p>Podemos encadenar métodos a una promesa utilizando la palabra clave <code>then</code> y atrapar los errores con la
+    palabra clave
+    <code>catch</code>, lo que nos permite manejar los resultados exitosos y los errores de forma más clara y concisa.
+  </p>
+  <blockquote>
+    <p><strong>Diferencia con los callbacks</strong>: Se introdujo el <strong>encadenamiento</strong>
+      (<code>.then().then().catch()</code>).
+      El código dejó de crecer hacia la derecha y empezó a crecer hacia abajo, de forma lineal.</p>
+    <p><strong>La mejora clave:</strong> Un solo <code>.catch</code> al final de la cadena podía atrapar los errores de
+      cualquier paso anterior
+      eliminando la necesidad de duplicar código de control de errores.</p>
+  </blockquote>
+
+  <h3>async/await (ES8 / 2017)</h3>
+  <p>A pesar de las ventajas de las promesas, los bloques extensos de <code>.then()</code> y funciones flecha anónimas
+    aún generaban cierto
+    “ruido visual”. Para optimizarlo, se introdujeron las palabras clave <code>async</code> y <code>await</code>.</p>
+  <blockquote>
+    <p><strong>¿Nueva tecnología?:</strong> En realidad, no. Es <em>"azúcar sintáctico"</em>. En Informática se denomina
+      azúcar sintáctico a una capa cosmética construida sobre una tecnología, en este caso, las promesas.
+      <code>async/await</code>. Permite escribir código asincrónico pero que <strong>se lee e interpreta <span
+          class="smallcaps">visualmente</span>, como si fuera síncrono</strong>: (línea por línea).
+    </p>
+    <p><strong>La mejora clave:</strong> Desaparecen los métodos <code>.then()</code> y <code>.catch()</code>. El manejo
+      de errores se realiza utilizando el clásico <code>try {} catch (error) {}</code> que
+      se usa en el resto del lenguaje.</p>
+  </blockquote>
+  <p>Al anteponer la palabra clave <code>async</code> a una función, indicamos que dicha función manejará asincronía (y
+    que automáticamente retornará una promesa). Dentro de ella, la palabra clave <code>await</code> detiene pausadamente
+    la ejecución de la función hasta que la promesa se resuelva, permitiendo un flujo de lectura más comprensible línea
+    a línea.</p>
+  <table class="border border-slate-800 mb-8">
+    <thead>
+      <tr>
+        <th style="width: 11%"><strong>Comparativa</strong></th>
+        <th style="width: 60%"><strong>Estilo de Código</strong></th>
+        <th style="width: 27%"><strong>Problema Principal</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Callbacks</strong></td>
+        <td><code>obtenerUsuario(id, function(u) { obtenerPosts(u.id, function(p) { ... }) })</code></td>
+        <td>Código ilegible (Callback Hell)</td>
+      </tr>
+      <tr>
+        <td><strong>Promesas</strong></td>
+        <td><code>obtenerUsuario(id).then(u =&gt;  obtenerPosts(u.id)).then(p =&gt; ...)</code></td>
+        <td>Demasiada sintaxis verbal (<code>.then</code>)</td>
+      </tr>
+      <tr>
+        <td><strong>Async/Await</strong></td>
+        <td><code>const u = await obtenerUsuario(id); const p = await obtenerPosts(u.id);</code></td>
+        <td>Ninguno, es limpio y fácil de leer</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Ejemplo de la evolución en el manejo de la asincronía usando código:</h2>
+  <p>Para ilustrar esta evolución usaremos un mismo caso de uso: <strong>Buscar un usuario y, si existe, buscar sus
+      publicaciones</strong>. Incluye el manejo de errores en cada era.</p>
+
+  <h3>"Base de Datos" ficticia</h3>
+
+  <blockquote class="codigo">
+    <script src="https://gist.github.com/contenido-vario/27eb0cfeab1fb490f9e62d79d3fb5ba5.js?file=bbdd.js"></script>
+  </blockquote>
+
+  <h3>Solución con Callbacks</h3>
+
+  <blockquote class="codigo">
+    <script src="https://gist.github.com/contenido-vario/27eb0cfeab1fb490f9e62d79d3fb5ba5.js?file=callback.js"></script>
+  </blockquote>
+
+  <p>Se puede apreciar, cómo el manejo de errores obliga a pasar un parámetro <code>error</code> en cada función y cómo el código se va desplazando a la derecha.</p>
+
+  <h3>Solución con Promesas</h3>
+
+  <blockquote class="codigo">
+    <script src="https://gist.github.com/contenido-vario/27eb0cfeab1fb490f9e62d79d3fb5ba5.js?file=promesas.js"></script>
+  </blockquote>
+
+  <p>Aquí el código crece hacia abajo y usamos <code>.then</code> y <code>.catch</code>.</p>
+
+  <h3>Solución con Async/Await</h3>
+  <p>Usamos las mismas funciones que retornan promesas del ejemplo anterior, pero el consumo cambia radicalmente.</p>
+
+  <blockquote class="codigo">
+    <script
+      src="https://gist.github.com/contenido-vario/27eb0cfeab1fb490f9e62d79d3fb5ba5.js?file=async-await.js">
+    </script>
+  </blockquote>
+
+
+  <p>Tanto <code>obtenerUsuarioPromise(1)</code> como <code>obtenerPostsPromise(1)</code> son <strong>operaciones
+      asíncronas</strong>, porque su objetivo principal es gestionar una tarea
+    que toma tiempo (en este caso, el <code>setTimeout</code> que simula la espera de la red) y devolver una Promesa.
+  </p>
+
+  <h4>1. Funciones que retornan Promesas (Estilo ES6)</h4>
+  <p><code>obtenerUsuarioPromise</code> y <code>obtenerPostsPromise</code> son funciones normales cuyo “superpoder” es
+    que <strong>retornan un objeto <code>Promise</code></strong>. Nacen en 2015. Generan asincronía, pero el motor de
+    JavaScript las ve como funciones comunes y corrientes que devuelven un objeto especial.</p>
+  <h4>2. Funciones Asíncronas nativas (<code>async</code>) (Estilo ES8)</h4>
+  <h5 id="los-dos-caminos-posibles">Los dos caminos posibles:</h5>
+  <ol>
+    <li><strong>Si hay éxito:</strong> Se ejecuta el <code>try</code> ➡️ se salta el <code>catch</code> ➡️ se ejecuta el
+      <code>finally</code>
+    </li>
+    <li><strong>Si hay error:</strong> Se ejecuta el <code>try</code> (hasta donde falle) ➡️ se ejecuta el
+      <code>catch</code> ➡️ se ejecuta el <code>finally</code>.
+    </li>
+  </ol>
+
+  <h5>Sobre las funciones asíncronas nativas:</h5>
+
+  <p>En JavaScript, el término técnico <strong>“Función asíncrona”</strong> (<em>Async Function</em>) se reserva
+    específicamente para aquellas funciones que llevan la palabra clave <code>async</code>
+    por delante, como nuestro ejemplo:</p>
+
+  <p><code>async function ejecutarProceso() { ... }</code></p>
+  <p>Estas funciones son especiales porque:</p>
+  <ul>
+    <li>El motor de JavaScript ya sabe de antemano que dentro de ellas se va a usar <code>await</code>.</li>
+    <li><strong>Siempre</strong> devuelven una promesa de forma automática, incluso si no se escribe
+      <code>return new Promise()</code>.
+    </li>
+  </ul>
+  <p><strong>Para resumir…</strong> :</p>
+  <blockquote>
+    <p><strong><code>obtenerUsuarioPromise</code></strong> es una función que <em>gestiona asincronía</em> devolviendo
+      una Promesa.</p>
+    <p><strong><code>ejecutarProceso</code></strong> es, técnicamente hablando, la <em>Función Asíncrona</em>
+      (<code>async</code>) que <em>consume</em> esa promesa usando <code>await</code>.</p>
+  </blockquote>
+
+  <figure class="text-center"><img class="inline" src="./img/warning.gif"></figure>
+  <p class="text-center mx-24 text-lg"><strong>IMPORTANTE</strong><br>
+    Solo se debe declarar una función como <code>async</code> si dentro de ella vamos a utilizar <code>await</code> para esperar <strong>al menos una promesa real</strong> (un proceso que verdaderamente tome tiempo en el futuro). Si no hay promesas de por medio, la función debe ser una función normal.
+    </p>
+
+  <hr class="my-8">
+  <p>A continuación inserto un video que me gustó sobre el tema:</p>
+
+  <iframe 
+      class="mx-auto  w-2/3 aspect-video"
+      src="https://www.youtube-nocookie.com/embed/a91rU4Jk1KU" 
+      title="YouTube video player" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+      referrerpolicy="no-referrer-when-downgrade" 
+      allowfullscreen>
+    </iframe>
+
+
+</body>
+
+</html>
