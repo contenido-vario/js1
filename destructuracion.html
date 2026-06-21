@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&display=swap"
+    rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+  </script>
+
+  <style type="text/tailwindcss">
+    @import "tailwindcss"; 
+    /* Esto carga todo el framework */
+
+    /* Variables de configuración */
+    @theme {
+      --font-sans: "Inclusive Sans", ui-sans-serif, system-ui, sans-serif;
+      --color-brand: #ff4500;
+    }
+
+    @layer base {
+      :root {
+        @apply text-sm;
+        line-height: 1.5;
+      }
+
+      h2 {@apply font-bold text-2xl my-4 }
+      h3 {@apply font-bold text-xl my-4 }
+      h4 {@apply text-xl text-red-700 my-3 }
+      h5 {@apply text-lg text-red-700 my-3 }
+
+      p {
+        @apply my-2
+      }
+
+      button {
+        @apply rounded-md bg-slate-200 border-1 border-slate-400 px-4 py-1 my-1 text-sm cursor-pointer disabled:opacity-50
+      }
+      details {
+        @apply mb-4 py-2 border-b-slate-700 border-b-1 text-slate-800 
+      }
+      summary {
+        @apply py-1 text-base bg-slate-800 text-white font-bold
+      }
+      blockquote { @apply mx-8 p-2 text-sm font-mono }
+
+      ol {
+        @apply list-decimal list-outside ml-6 mb-4
+      }
+
+      ul {
+        @apply list-[circle] list-outside ml-6 mb-4
+      }
+      
+      kbd, code, a {
+        @apply text-blue-800
+      }
+
+      a {
+        @apply border-b-1 
+      }
+
+      input, select {
+        @apply border-1 px-2
+      }
+
+      hr {
+        @apply my-3
+      }
+    }
+  </style>
+
+  <link rel="shortcut icon" href="bucles.svg" type="image/svg">
+  <title>Destructuración</title>
+</head>
+
+<body class="container mx-auto w-5/6 pb-10">
+  <header id="title-block-header">
+    <h1 class="font-bold text-2xl text-red-700 mb-4">Ejercicios Destructuración</h1>
+  </header>
+
+  <p>Copia los snippets de los ejercicios y complétalos:</p>
+
+  <details>
+    <summary>Ejercicio 1: El perfil de usuario (Objetos)</summary>
+    <p>Tienes el siguiente objeto que representa a un usuario. Extrae las propiedades <code>nombre</code>, <code>edad</code> y <code>pais</code> en variables independientes usando una sola línea de código.</p>
+
+    <blockquote><script src="https://gist.github.com/contenido-vario/ff6df9e317332c69b4c0595b861b1c63.js?file=ejercicio1.js"></script></blockquote>
+  </details>
+
+  <details>
+    <summary>Ejercicio 2: El podio de una carrera (Arrays)</summary>
+    <p>Tienes un array con los nombres de los corredores en el orden en que llegaron a la meta. Extrae al primer, segundo y tercer lugar en variables llamadas <code>oro</code>, <code>plata</code> y <code>bronce</code>.</p>
+    
+    <blockquote><script src="https://gist.github.com/contenido-vario/ff6df9e317332c69b4c0595b861b1c63.js?file=ejercicio2.js"></script></blockquote>
+  </details>
+
+  <details>
+    <summary>Ejercicio 3: Configuración de una app (Valores por defecto)</summary>
+    <p>Al recibir las opciones de configuración de una aplicación, a veces faltan datos. Extrae <code>tema</code> e <code>idioma</code> del siguiente objeto. Si <code>idioma</code> no existe en el objeto, debe tomar el valor por defecto <b>"es"</b> (español).</p>
+    
+    <blockquote><script src="https://gist.github.com/contenido-vario/ff6df9e317332c69b4c0595b861b1c63.js?file=ejercicio3.js"></script></blockquote>
+  </details>
+
+  <details>
+    <summary>Ejercicio 4: Conflicto de variables (Alias / Renombrar) </summary>
+    <p>Imagina que estás importando datos de una API externa que usa nombres en inglés (<code>title</code> y <code>salary</code>). Extrae esos valores pero cámbiales el nombre a variables en español (<code>titulo</code> y <code>salario</code>) para que "encajen" con tu código.</p>
+
+    <blockquote><script src="https://gist.github.com/contenido-vario/ff6df9e317332c69b4c0595b861b1c63.js?file=ejercicio4.js"></script></blockquote>
+  </details>
+  
+  <details>
+    <summary>Ejercicio 5: Datos anidados de un e-commerce</summary>
+    <p>A veces los objetos tienen otros objetos dentro. Extrae el <code>pais</code> y la <code>ciudad</code> de la dirección de este cliente, además de su <code>nombre</code>, todo en una única línea de destructuración.</p>
+    
+    <blockquote><script src="https://gist.github.com/contenido-vario/ff6df9e317332c69b4c0595b861b1c63.js?file=ejercicio5.js"></script></blockquote>
+  </details>
+
+  <details>
+    <summary>Ejercicio 6: El producto y el resto (Operador Rest ...)</summary>
+    <p>Tienes un producto de una tienda. Extrae el <code>id</code> y el <code>precio</code> en variables individuales, y agrupa todas las demás propiedades restantes en un nuevo objeto llamado <code>detalles</code>.</p>
+    
+    <blockquote><script src="https://gist.github.com/contenido-vario/ff6df9e317332c69b4c0595b861b1c63.js?file=ejercicio6.js"></script></blockquote>
+  </details>
+
+
+
+</body>
