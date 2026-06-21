@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&display=swap"
+    rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+  </script>
+
+  <style type="text/tailwindcss">
+    @import "tailwindcss"; 
+    /* Esto carga todo el framework */
+
+    /* Variables de configuración */
+    @theme {
+      --font-sans: "Inclusive Sans", ui-sans-serif, system-ui, sans-serif;
+      --color-brand: #ff4500;
+    }
+
+    @layer base {
+      :root {
+        @apply text-sm;
+        line-height: 1.5;
+      }
+
+      h1 {@apply font-bold text-3xl text-red-700 my-4 }
+      h2 {@apply font-bold text-2xl my-4 }
+      h3 {@apply font-bold text-xl my-4 }
+      h4 {@apply text-xl text-red-700 my-3 }
+      h5 {@apply text-lg text-red-700 my-3 }
+
+      p {
+        @apply mb-1
+      }
+
+      button {
+        @apply rounded-md bg-slate-200 border-1 border-slate-400 px-4 py-1 my-1 text-sm cursor-pointer disabled:opacity-50
+      }
+      details {
+        @apply mb-4 py-2 border-b-slate-700 border-b-1 text-slate-800 
+      }
+      summary {
+        @apply py-1 text-base bg-slate-800 text-white font-bold
+      }
+      blockquote { @apply mx-8 p-2 text-sm font-mono }
+
+      ol {
+        @apply list-decimal list-outside ml-6 mb-4
+      }
+
+      ul {
+        @apply list-[circle] list-outside ml-6 mb-4
+      }
+      
+      kbd, code, a {
+        @apply text-blue-800
+      }
+
+      a {
+        @apply border-b-1 
+      }
+
+      input, select {
+        @apply border-1 px-2
+      }
+
+      hr {
+        @apply my-3
+      }
+    }
+  </style>
+
+  <link rel="shortcut icon" href="bucles.svg" type="image/svg">
+  <title>Destructuración</title>
+</head>
+
+<body class="container mx-auto w-5/6 pb-10">
+  <header id="title-block-header">
+    <h1>Destructuración en JavaScript</h1>
+  </header>
+  <p><strong>Destructuración</strong> es una nueva característica de ES6 que nos da la posibilidad de poder coger los datos de objetos o arrays directamente y de manera múltiple, para extraerlos a variables o constantes. Hay varios tipos:
+  </p>
+
+  <h2>1. Destructuración de arrays</h2>
+  
+  <p>La instrucción: <code>const [llave, valor] = cookie.split('=');</code> es una instrucción de destructuración de arrays, una característica que llegó a JavaScript en ES6 y que hace el código mucho más limpio.</p>
+
+  <p>El método <code>.split('=')</code> corta el texto de la cookie por el signo igual y devuelve un array con exactamente dos elementos. Por ejemplo, si la cookie es "<code>usuario = Carlos</code>", el resultado de split es <code>["usuario", "Carlos"]</code>.</p>
+
+  <p><b>Sin destructuración</b>, para guardar esos dos datos en variables habrías tenido que escribir esto:</p>
+
+  <blockquote><script src="https://gist.github.com/contenido-vario/ff6df9e317332c69b4c0595b861b1c63.js?file=ejemplo1a.js"></script></blockquote>
+
+  <p><b>Con la destructuración</b>, extraes los elementos de esa "caja" (el array) y los asignas a variables individuales en una sola línea, basándote en su posición:</p>
+  <blockquote><script src="https://gist.github.com/contenido-vario/ff6df9e317332c69b4c0595b861b1c63.js?file=ejemplo1b.js"></script></blockquote>
+
+  <h3>Un par de trucos extra de la destructuración de arrays:</h3>
+
+  <ol>
+    <li>
+      <p><b>Se pueden ignorar elementos</b>: Si solo interesara el valor y se quisiera pasar de la llave, se puede dejar el espacio vacío separado por una coma:</p>
+      <blockquote><script src="https://gist.github.com/contenido-vario/ff6df9e317332c69b4c0595b861b1c63.js?file=ejemplo1c.js"></script></blockquote>
+    </li>
+    <li>
+      <p><b>Valores por defecto</b>: Si por alguna razón la cookie no tuviera un signo <code>=</code> (lo que dejaría la segunda posición como <code>undefined</code>), se le puede asignar un valor de respaldo:</p>
+      <blockquote><script src="https://gist.github.com/contenido-vario/ff6df9e317332c69b4c0595b861b1c63.js?file=ejemplo1d.js"></script></blockquote>
+    </li>
+  </ol>
+  
+  <h2>2. Destructuración de Objetos</h2>
+
+  <p>Imaginemos un objeto que representa a un usuario. En lugar de escribir <code>usuario.nombre</code> y <code>usuario.edad</code> por todos lados, se pueden extraer esos datos directamente, usando llaves {}:</p>
+
+  <blockquote><script src="https://gist.github.com/contenido-vario/ff6df9e317332c69b4c0595b861b1c63.js?file=ejemplo2a.js"></script></blockquote>
+
+  <h3>Es posible cambiar el nombre de la variable</h3>
+
+  <p>Si no se quiere que la variable resultante se llame exactamente igual que la propiedad del objeto (tal vez porque ya tienes otra variable con ese nombre), es posible renombrarla usando los dos puntos <code>:</code>:</p>
+
+  <blockquote><script src="https://gist.github.com/contenido-vario/ff6df9e317332c69b4c0595b861b1c63.js?file=ejemplo2b.js"></script></blockquote>
+
+  <h2>3. Destructuración en los Parámetros de una Función</h2>
+
+  <p>Esta es una combinación de la destructuración de objetos. Se puede destructurar un objeto <b>directamente en los argumentos de una función</b>, antes de que empiece el código.</p>
+
+  <blockquote><script src="https://gist.github.com/contenido-vario/ff6df9e317332c69b4c0595b861b1c63.js?file=ejemplo3a.js"></script></blockquote>
+
+  <blockquote class="font-sans bg-sky-50">
+    <p>📍 <strong>React &gt; Props</strong></p>
+    <p>Esto se usa muchísimo en frameworks modernos como <b>React</b> para recibir sus famosas <b>Props</b>.</p>
+  </blockquote>
+
+  <h2>4. Destructuración Anidada (Objetos dentro de Objetos)</h2>
+
+  <p>Si se tiene un objeto complejo con más objetos en su interior, es posible navegar hasta el último nivel, en una sola línea:</p>
+
+  <blockquote><script src="https://gist.github.com/contenido-vario/ff6df9e317332c69b4c0595b861b1c63.js?file=ejemplo4a.js"></script></blockquote>
+
+  <h2>5. Destructuración con el Operador Rest (...)</h2>
+  <p>Tanto en arrays como en objetos, es posible utilizar los tres puntos ... (<code>operador Rest</code>) para decirle a JavaScript: "<em>Guárdame estas propiedades específicas, y todo lo demás que sobre, mételo en una bolsa aparte</em>".</p>
+
+  <blockquote><script src="https://gist.github.com/contenido-vario/ff6df9e317332c69b4c0595b861b1c63.js?file=ejemplo5a.js"></script></blockquote>
+
+
+
+</body>
+
+</html>
