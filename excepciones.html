@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="bucles.svg" type="image/svg">
+    <title>try-catch-finally</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital,wght@0,300..700;1,300..700&display=swap"
+        rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+
+    <style type="text/tailwindcss">
+        @import "tailwindcss"; 
+    /* Esto carga todo el framework */
+
+    /* Variables de configuración */
+    @theme {
+      --font-sans: "Inclusive Sans", ui-sans-serif, system-ui, sans-serif;
+      --color-brand: #ff4500;
+    }
+
+    @layer base {
+      :root {
+        @apply text-sm;
+        line-height: 1.5;
+      }
+
+      h1 {@apply font-bold text-3xl text-red-700 my-4 }
+      h2 {@apply font-bold text-2xl my-4 }
+      h3 {@apply font-bold text-xl my-4 }
+      h4 {@apply text-xl text-red-700 my-3 }
+      h5 {@apply text-lg text-red-700 my-3 }
+      p { @apply mb-4 }
+
+      button {
+        @apply rounded-md bg-slate-200 border-1 border-slate-400 px-4 py-1 my-1 text-sm cursor-pointer disabled:opacity-50
+      }
+
+      blockquote { @apply mx-8 p-2 text-sm font-mono }
+      ol { @apply list-decimal list-outside ml-6 mb-4 }
+      ul { @apply list-[circle] list-outside ml-6 mb-4 }
+      kbd, code, a { @apply text-blue-800 }
+      a { @apply border-b-1 }
+      input, select { @apply border-1 px-2 }
+      hr { @apply my-3 }
+    }
+  </style>
+
+</head>
+
+<body class="container mx-auto w-5/6 pb-10">
+    <!-- Texto de contexto para los alumnos -->
+    <h1>try-catch-finally: Flujo Completo del Portapapeles</h1>
+    <p class="text-slate-600 mb-8 font-bold">
+        Prueba los tres métodos para entender el control de excepciones con hardware externo.
+    </p>
+
+    <!-- Controles del ejercicio -->
+    <p>
+        <label class="inline-block w-32" for="campo-texto">Origen:</label>
+        <input class="inline-block w-3xs" id="campo-texto" type="text" value="TOKEN_SECRETO_XYZ123" readonly class="bg-slate-50 text-slate-700">
+    </p>
+    <p>
+        <label class="inline-block w-32" for="campo-destino">Destino:</label>
+        <input class="inline-block w-3xs" id="campo-destino" type="text" placeholder="El texto pegado aparecerá aquí" class="border p-1">
+    </p>
+    <p class="mt-8">
+        <!-- Botón 1: Copia Síncrona -->
+        <button id="btn-copiar">Método 1: Copiar (Síncrono)</button>
+
+        <!-- Botón 2: Copia Asíncrona -->
+        <button id="btn-copiar-async">Método 2: Copiar (Asíncrono)</button>
+
+        <!-- Botón 3: Pegar Asíncrono (Nuevo) -->
+        <button id="btn-pegar-async">Método 3: Pegar desde Sistema (Asíncrono)</button>
+    </p>
+    <p id="metodo1" class="text-slate-600 mb-4">
+        <!-- Aquí se mostrarán los resultados del método1 -->
+    </p>
+    <p id="metodo2" class="text-slate-600 mb-4">
+        <!-- Aquí se mostrarán los resultados del método2 -->
+    </p>
+    <p id="metodo3" class="text-slate-600 mb-4">
+        <!-- Aquí se mostrarán los resultados del método3 -->
+    </p>
+
+    <script>
+        // --- ELEMENTOS DEL DOM ---
+        const botonSincrono = document.getElementById("btn-copiar");
+        const botonAsincrono = document.getElementById("btn-copiar-async");
+        const botonPegarAsync = document.getElementById("btn-pegar-async");
+        const inputOrigen = document.getElementById("campo-texto");
+        const inputDestino = document.getElementById("campo-destino");
+        const display1 = document.getElementById("metodo1");
+        const display2 = document.getElementById("metodo2");
+        const display3 = document.getElementById("metodo3");
+
+        // --- MÉTODO 1: SÍNCRONO (Escritura) ---
+        const ejecutarCopiaSincrona = () => {
+            botonSincrono.innerText = "⏳ Copiando...";
+            botonSincrono.disabled = true;
+
+            try {
+                inputOrigen.select();
+                let copiado = document.execCommand("copy");
+
+                if (!copiado) {
+                    throw new Error("El navegador rechazó la orden de copiado.");
+                }
+                metodo1.innerText = `[Método 1. Síncrono] Copiado en sistema: ${inputOrigen.value}`;
+
+            } catch (error) {
+                metodo1.innerText = `⛔ Error síncrono: No se pudo acceder al portapapeles`;
+                console.error(error.message);
+
+            } finally {
+                botonSincrono.innerText = "Método 1: Copiar (Síncrono) 👍";
+                botonSincrono.disabled = false;
+                window.getSelection().removeAllRanges();
+            }
+        }
+
+        // --- MÉTODO 2: ASÍNCRONO (Escritura) ---
+        const ejecutarCopiaAsincrona = async () => {
+            botonAsincrono.innerText = "⏳ Guardando...";
+            botonAsincrono.disabled = true;
+
+            try {
+                await navigator.clipboard.writeText(inputOrigen.value);
+                metodo2.innerText = `[Método 2. Asíncrono] ¡Copiado con éxito mediante Clipboard API!`;
+
+            } catch (err) {
+                metodo2.innerText = `⛔ Error asíncrono al copiar.`;
+                console.error(err);
+
+            } finally {
+                botonAsincrono.innerText = "Método 2: Copiar (Asíncrono) 👍";
+                botonAsincrono.disabled = false;
+            }
+        }
+
+        // --- MÉTODO 3: ASÍNCRONO (Lectura / Pegar) ---
+        const ejecutarPegarAsincrono = async () => {
+            botonPegarAsync.innerText = "⏳ Pidiendo permiso...";
+            botonPegarAsync.disabled = true;
+
+            try {
+                // OPERACIÓN CRÍTICA: Intentamos leer la memoria privada del usuario.
+                // Aquí el navegador mostrará el cuadro de diálogo obligatorio de confirmación.
+                const textoRecuperado = await navigator.clipboard.readText();
+
+                // Si acepta, inyectamos el valor en el input de destino
+                inputDestino.value = textoRecuperado;
+                metodo3.innerText = `[Método 3. Asíncrono] ¡Permiso concedido! Datos leídos con éxito.`;
+
+            } catch (err) {
+                // Si el usuario hace clic en "Bloquear", el navegador corta el flujo y saltamos aquí
+                metodo3.innerText = `⛔ Error de lectura: Permiso denegado para leer el portapapeles.`;
+                console.error("Acceso al portapapeles bloqueado por el usuario:", err);
+
+            } finally {
+                // Pase lo que pase, desbloqueamos el botón de la interfaz
+                botonPegarAsync.innerText = "Método 3: Pegar desde Sistema (Asíncrono) 👍";
+                botonPegarAsync.disabled = false;
+                console.info("Interfaz del botón pegar restaurada en el finally.");
+            }
+        }
+
+        // --- LISTENERS ---
+        botonSincrono.addEventListener('click', ejecutarCopiaSincrona);
+        botonAsincrono.addEventListener('click', ejecutarCopiaAsincrona);
+        botonPegarAsync.addEventListener('click', ejecutarPegarAsincrono);
+
+    </script>
+</body>
+
+</html>
